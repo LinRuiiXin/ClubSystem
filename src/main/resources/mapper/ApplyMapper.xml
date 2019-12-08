@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.mapper.ApplyMapper">
+    <insert id="insertApply" parameterType="com.lx.POJO.Apply">
+        insert into apply(userId,money,reason,applyDate,status,clubId) values (#{userId},#{money},#{reason},now(),0,#{clubId})
+    </insert>
+    <select id="queryAll" resultType="com.lx.POJO.Apply">
+        select * from apply order by id desc
+    </select>
+</mapper>

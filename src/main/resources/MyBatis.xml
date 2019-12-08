@@ -20,5 +20,6 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/ShareMapper.xml"/>
+        <mapper resource="mapper/ApplyMapper.xml"/>
     </mappers>
 </configuration>

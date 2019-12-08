@@ -179,7 +179,7 @@
 				
 	<!--主体内容-->
 	<div class="main">
-		<form action="#" autocomplete="off" onsubmit="return checkAll()">
+		<form autocomplete="off">
 			<div class="form-div">
 				<div class="form-left">
 					<input id="apply-num" type="text" class="apply-num" placeholder="申请金额"/>
@@ -188,7 +188,7 @@
 					<input id="apply-reason" type="text" class="apply-reason" placeholder="申请理由"/>
 				</div>
 				<div class="form-right">
-					<input type="submit" class="apply-submit" value="提交"/>
+					<input type="button" id="applyBtn" class="apply-submit" value="提交"/>
 					<input type="button" class="apply-button" value="清空" onclick="clearAll()"/>
 				</div>
 			</div>
@@ -197,22 +197,15 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Phone</th>
-						<th>Mobile</th>
+						<th>金额</th>
+						<th>理由</th>
+						<th>状态</th>
+						<th>申请时间</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr><td class="user-name">gary coleman</td><td class="user-email">gary.coleman21@example.com</td><td class="user-phone">(398)-332-5385</td><td class="user-mobile">(888)-677-3719</td></tr>
-					<tr><td class="user-name">rose parker</td><td class="user-email">rose.parker16@example.com</td><td class="user-phone">(293)-873-2247</td><td class="user-mobile">(216)-889-4933</td></tr>
-					<tr><td class="user-name">chloe nelson</td><td class="user-email">chloe.nelson18@example.com</td><td class="user-phone">(957)-213-3499</td><td class="user-mobile">(207)-516-4474</td></tr>
-					<tr><td class="user-name">eric bell</td><td class="user-email">eric.bell16@example.com</td><td class="user-phone">(897)-762-9782</td><td class="user-mobile">(565)-627-3002</td></tr>
-					<tr><td class="user-name">douglas hayes</td><td class="user-email">douglas.hayes92@example.com</td><td class="user-phone">(231)-391-6269</td><td class="user-mobile">(790)-838-2130</td></tr>
-					<tr><td class="user-name">cameron brown</td><td class="user-email">cameron.brown32@example.com</td><td class="user-phone">(204)-488-5204</td><td class="user-mobile">(508)-463-6811</td></tr>
-					<tr><td class="user-name">nevaeh diaz</td><td class="user-email">nevaeh.diaz99@example.com</td><td class="user-phone">(436)-578-2946</td><td class="user-mobile">(906)-412-3302</td></tr>
-					<tr><td class="user-name">kathy miller</td><td class="user-email">kathy.miller62@example.com</td><td class="user-phone">(724)-705-3555</td><td class="user-mobile">(764)-841-2531</td></tr>
-					<tr><td class="user-name">susan king</td><td class="user-email">susan.king88@example.com</td><td class="user-phone">(774)-205-7754</td><td class="user-mobile">(639)-267-9728</td></tr>
+				<tbody id="tbody">
+<!--					<tr><td class="user-name">gary coleman</td><td class="user-email">gary.coleman21@example.com</td><td class="user-phone">(398)-332-5385</td><td class="user-mobile">(888)-677-3719</td></tr>-->
+				</tbody>
 			</table>
 		
 			</div>
@@ -229,6 +222,40 @@
 <script type="text/javascript" src="../js/jump.js"></script>
 <script>window.jQuery || document.write('<script src="../js/jquery-1.11.0.min.js"><\/script>')</script>
 <script type="text/javascript">
+	window.onload = function(){
+		$.ajax({
+			url:"../loadApplyServlet",
+			method:"get"
+		}).done(function(data){
+			if(data.status == 1){
+				xtip.msg(data.msg,{icon:'e',type:'w'});
+			}else if(data.status == 0){
+				var applies = data.obj;
+				if(applies == null){
+
+				}else{
+					if(applies[0].status == 0){
+						$("#applyBtn").css("background","#979797");
+						$("#applyBtn").css("pointer-events","none");
+					}
+					for(var i = 0;i<applies.length;i++){
+						var apply = applies[i];
+						var status;
+						if(apply.status == 0){
+							status = "正在审核";
+						}else if(apply.status == 1){
+							status = "驳回";
+						}else{
+							status = "成功";
+						}
+						$("#tbody").append("<tr><td class=\"user-name\">"+apply.money+"</td><td class=\"user-email\">"+apply.reason+"</td><td class=\"user-phone\">"+status+"</td><td class=\"user-mobile\">"+apply.applyDate+"</td></tr>")
+					}
+				}
+			}
+		}).fail(function(){
+			xtip.msg("请求失败",{icon:'e',type:'w'});
+		})
+	};
 	var isPass = false;
 	var applynum = document.getElementById("apply-num");
 	var applyreason = document.getElementById("apply-reason");
@@ -278,10 +305,29 @@
 			isPass = false;
 		}
 		if(isPass){
-			return isPass;
+			return true;
 		}else{
 			xtip.msg("请检查格式",{icon:'e',type:'w'});
-			return isPass;
+			return false;
 		}
 	}
+	$("#applyBtn").click(function(){
+		if(checkAll()){
+			var num = document.getElementById("apply-num").value;
+			var reason = document.getElementById("apply-reason").value;
+			$.ajax({
+				url:"../applyServlet",
+				data:{"money":num,"reason":reason},
+				method:"post"
+			}).done(function(data){
+				if(data.status == 0){
+					alert(data.msg);
+				}else if(data.status == 1){
+					xtip.msg(data.msg,{icon:'e',type:'w'});
+				}
+			}).fail(function(){
+				xtip.msg("请求失败",{icon:'e',type:'w'});
+			})
+		}
+	})
 </script>
