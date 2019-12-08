@@ -1,0 +1,72 @@
+{
+  "id": "1480722",
+  "name": "员工管理系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "653980",
+      "name": "库存",
+      "font_class": "kucun",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "933631",
+      "name": "闹钟",
+      "font_class": "naozhong",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "1305472",
+      "name": "任务",
+      "font_class": "renwu",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "5111263",
+      "name": "头像-空",
+      "font_class": "touxiang-kong",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "5387732",
+      "name": "登出",
+      "font_class": "dengchu",
+      "unicode": "eb45",
+      "unicode_decimal": 60229
+    },
+    {
+      "icon_id": "6332156",
+      "name": "申请",
+      "font_class": "shenqing",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "7171153",
+      "name": "链接管理",
+      "font_class": "lianjie",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "10809380",
+      "name": "信封 信件",
+      "font_class": "changyongtubiao-xianxingdaochu-zhuanqu-",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "11032205",
+      "name": "公告",
+      "font_class": "gonggao",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}

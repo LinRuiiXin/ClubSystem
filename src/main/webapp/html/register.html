@@ -1,0 +1,613 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- 弹窗 -->
+	<link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+	<link rel="shortcut icon" href="#"/>
+	<script src="../js/xtiper.min.js" type="text/javascript"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-family: "微软雅黑"
+		}
+		body{
+			background:#323232;
+		}
+		.main{
+			width: 1000px;
+			height: 450px;
+			margin: 0 auto;
+			align-content: center;
+			margin-top: 85px;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 4px 4px 15px #181818;
+		}
+		.main-left{
+			width: 50%;
+			height: 100%;
+			background-color:#1C6AB4;
+			position: relative
+		}
+		.main-right{
+			width: 50%;
+			height: 100%;
+			background:#2A2A2A;
+			margin-left: 500px;
+			margin-top: -450px;
+			position: relative;
+		}
+		.main-left-text1{
+			color: #FFFFFF;
+			font-size: 40px;
+			font-weight: bold;
+			padding-left: 50px;
+			padding-top: 170px;
+		}
+		.main-left-text2{
+			color: #fff;
+			font-size: 15px;
+			margin-top: 10px;
+			padding-left: 50px;
+		}
+		input{
+			outline: none;
+			background-color:rgba(0,0,0,0);
+			border: none;
+			border-bottom: #2192ff 1px solid;
+			font-size: 15px;
+			padding-left: 0px;
+			padding-bottom: 5px;
+		}
+		input:focus{
+			transition: all 0.3s;
+			border-bottom: 1px #6BB6FF solid;
+		}
+
+		/*		line1*/
+		.line1{
+			position: relative;
+			top: 70px;
+			left: 69px;
+		}
+		.register-userName{
+			float: left;
+			position: absolute;
+
+		}
+		.register-password{
+			float: left;
+			position: absolute;
+			left: 205px;
+		}
+		.input-userName{
+			width: 150px;
+			color: #757575;
+			z-index: 10;
+		}
+		.input-password{
+			width: 150px;
+			color: #757575;
+		}
+
+		/*		line2*/
+
+		.line2{
+			position: relative;
+			top: 135px;
+			left: 69px;
+		}
+		.register-sex{
+			float: left;
+			position: absolute;
+
+		}
+		.register-birthday{
+			float: left;
+			position: absolute;
+			left: 205px;
+		}
+		.sex-man{
+			display: none;
+		}
+		.sex-woman{
+			display: none;
+		}
+		label{
+			position: relative;
+			margin-right: 30px;
+			color: #757575;
+		}
+		label::before{
+			display: inline-block;
+			content: "";
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			border: 1px solid #757575;
+			margin-right: 6px;
+			vertical-align: bottom;
+			color: #2192ff;
+		}
+		input:checked+label::before{
+			background-color:rgba(0,0,0,0);
+			border: 1px solid #2192ff;
+		}
+		input:checked+label::after{
+			display: inline-block;
+			content: "";
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			position: absolute;
+			left: 6px;
+			bottom: 6px;
+			background-color: #2192ff;
+		}
+		.year{
+			width: 47px;
+			height: 25px;
+			border-bottom: none;
+			border-radius: 7px;
+			border: 1px solid #2192ff;
+			text-align: center;
+			color: #43CDC7;
+			position: relative;
+			top: -3px;
+			padding-left: 0;
+			padding-bottom: 0;
+		}
+		.year::-webkit-input-placeholder {
+			text-align: center;
+		}
+		.year:-moz-placeholder {
+			text-align: center;
+		}
+		.year:-ms-input-placeholder {
+			text-align: center;
+		}
+		.h-line1{
+			color: #2192ff;
+			position: absolute;
+			top: 0px;
+			left: 55px;
+			font-size: 5px;
+		}
+
+		.month{
+			width: 23px;
+			height: 25px;
+			border-bottom: none;
+			border-radius: 7px;
+			border: 1px solid #2192ff;
+			text-align: center;
+			color: #43CDC7;
+			position: absolute;
+			top: -3px;
+			left: 74px;
+			padding-left: 0;
+			padding-bottom: 0;
+		}
+		.month::-webkit-input-placeholder {
+			text-align: center;
+		}
+		.month:-moz-placeholder {
+			text-align: center;
+		}
+		.month:-ms-input-placeholder {
+			text-align: center;
+		}
+		.h-line2{
+			color: #2192ff;
+			position: absolute;
+			top: 0px;
+			left: 105px;
+			font-size: 5px;
+		}
+		.day{
+			width: 23px;
+			height: 25px;
+			border-bottom: none;
+			border-radius: 7px;
+			border: 1px solid #2192ff;
+			text-align: center;
+			color: #43CDC7;
+			position: absolute;
+			top: -3px;
+			left: 124px;
+			padding-left: 0;
+			padding-bottom: 0;
+		}
+		.day::-webkit-input-placeholder {
+			text-align: center;
+		}
+		.day:-moz-placeholder {
+			text-align: center;
+		}
+		.day:-ms-input-placeholder {
+			text-align: center;
+		}
+
+		/*		line3*/
+		.line3{
+			position: absolute;
+			top: 200px;
+			left: 69px;
+		}
+		.register-telephone{
+			float: left;
+		}
+		.telephone{
+			width: 150px;
+			color: #757575;
+		}
+		.idCardNumber{
+			width: 150px;
+			color: #757575;
+			position: absolute;
+			left: 205px;
+			top: 0px;
+		}
+
+		/*		line4*/
+
+		.line4{
+			position: relative;
+			top: 285px;
+			left: 69px;
+		}
+		.register-nativePlace{
+			float: left;
+		}
+		.nativePlace{
+			width: 250px;
+			color: #757575;
+		}
+		.submit{
+			width: 53px;
+			height: 30px;
+			position: absolute;
+			left: 290px;
+			padding-top: 4px;
+			top: -3px;
+			border-bottom: none;
+			border-radius: 5px;
+			color: #fff;
+			background: #2192ff;
+			transition: all 0.3s;
+			text-align: center;
+			padding-left: 7px;
+			margin-left: 10px;
+		}
+		.submit:hover{
+			background: #0060BE;
+		}
+
+		/*	prompt*/
+		p{
+			color:#757575;
+			font-size: 15px;
+			z-index:-1;
+		}
+		.promt1{
+			position: absolute;
+			left: 70px;
+			top: 70px;
+			transition: all 0.3s;
+		}
+		.promt2{
+			position: absolute;
+			left: 274px;
+			top: 70px;
+			transition: all 0.3s;
+		}
+		.promt4{
+			position: absolute;
+			left: 274px;
+			top: 104px;
+			transition: all 0.3s;
+		}
+		.promt5{
+			position: absolute;
+			left: 70px;
+			top: 201px;
+			transition: all 0.3s;
+		}
+		.promt6{
+			position: absolute;
+			left: 274px;
+			top: 201px;
+			transition: all 0.3s;
+		}
+		.promt7{
+			position: absolute;
+			left: 70px;
+			top: 286px;
+			transition: all 0.3s;
+		}
+		span{
+			color: #fff;
+			position: absolute;
+			top: 370px;
+			left: 70px;
+		}
+		span a{
+			color: #2192ff;
+		}
+	</style>
+	<title>Register</title>
+</head>
+
+<body>
+<div class="main">
+	<div class="main-left">
+		<p class="main-left-text1">员工管理系统</p>
+		<p class="main-left-text2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+	</div>
+	<div class="main-right">
+		<form autocomplete="off" class="register-form" name="register-form" id="register-from">
+			<ul class="line1">
+				<li class="register-userName" id="register-userName">
+					<input onfocus="change1()" onBlur="changeback1()" name="userName" type="text" class="input-userName" id="input-userName"/>
+				</li>
+				<li class="register-password" id="register-password">
+					<input onfocus="change2()" onBlur="changeback2()" name="password" type="text" class="input-password" id="input-password"/>
+				</li>
+			</ul>
+			<ul class="line2">
+				<li class="register-sex">
+					<input type="radio" id="quest1" value="" name="sex" style="visibility:hidden">
+					<input type="radio" id="sex-man" class="sex-man" name="sex" value="1"/>
+					<label for="sex-man">先生</label>
+					<input type="radio" id="sex-woman" class="sex-woman" name="sex" value="0"/>
+					<label for="sex-woman">女士</label>
+				</li>
+				<li class="register-birthday">
+					<input onFocus="change7()" onBlur="changeback7()" type="text" class="year" placeholder="1908" name="year" id="year"/>
+					<p class="h-line1">—</p>
+					<input onFocus="change7()" onBlur="changeback7()" type="text" class="month" placeholder="1" name="month" id="month"/>
+					<p class="h-line2">—</p>
+					<input onFocus="change7()" onBlur="changeback7()" type="text" class="day" placeholder="1" name="day" id="day"/>
+				</li>
+			</ul>
+			<ul class="line3">
+				<li class="register-telephone">
+					<input onfocus="change3()" onBlur="changeback3()" type="text" name="telephone" class="telephone" id="telephone"/>
+				</li>
+				<li class="register-idCardNumber">
+					<input onfocus="change4()" onBlur="changeback4()" type="text" name="idCardNum" class="idCardNumber" id="idCardNumber"/>
+				</li>
+			</ul>
+			<ul class="line4">
+				<li class="register-nativePlace">
+					<input onfocus="change5()" onBlur="changeback5()" type="text" name="address" class="nativePlace" id="nativePlace"/>
+				</li>
+				<li class="register-submit">
+					<input type="button" id="submit" name="submit" class="submit" value="提交	"/>
+				</li>
+			</ul>
+		</form>
+		<p class="promt1" id="promt1">用户名</p>
+		<p class="promt2" id="promt2">密码</p>
+		<p class="promt4" id="promt4">出生日期</p>
+		<p class="promt5" id="promt5">电话号码</p>
+		<p class="promt6" id="promt6">身份证号码</p>
+		<p class="promt7" id="promt7">籍贯</p>
+		<span>Already have an account? <a href="login.html">Login</a></span>
+	</div>
+</div>
+</body>
+</html>
+<script src="../js/jquery-3.4.1.js"></script>
+<script>
+</script>
+<script>
+	var isPass = false;
+	function change1(){
+		var text = document.getElementById("promt1");
+		text.style.marginTop="-25px";
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback1(){
+		var value = document.getElementById("input-userName").value;
+		if(/[\u4E00-\u9FA5]/.test(value)){
+			document.getElementById("input-userName").style.color="white";
+			isPass = true;
+		}else{
+			xtip.msg("用户名必须包含汉字",{icon:'e',type:'w'});
+			document.getElementById("input-userName").style.color="red";
+			isPass = false;
+		}
+		if(value.length==0||value==""||value==undefined){
+			var text = document.getElementById("promt1");
+			text.style.marginTop="0px";
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}
+	}
+	function change2(){
+		var text = document.getElementById("promt2");
+		text.style.marginTop="-25px";
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback2(){
+		var value = document.getElementById("input-password").value;
+		if(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/.test(value)){
+			document.getElementById("input-password").style.color="white";
+			isPass = true;
+		}else{
+			xtip.msg("密码至少包含 数字和英文，长度6-20",{icon:'e',type:'w'});
+			document.getElementById("input-password").style.color="red";
+			isPass = false;
+		}
+		if(value.length==0||value==""||value==undefined || value.trim() == ""){
+			var text = document.getElementById("promt2");
+			text.style.marginTop="0px";
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}
+	}
+	function change3(){
+		var text = document.getElementById("promt5");
+		text.style.marginTop="-25px";
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback3(){
+		var value = document.getElementById("telephone").value;
+		if(/^1[34578]\d{9}$/.test(value)){
+			document.getElementById("telephone").style.color="white";
+			isPass = true;
+		}else{
+			xtip.msg("请正确输入手机号码",{icon:'e',type:'w'});
+			document.getElementById("telephone").style.color="red";
+			isPass = false;
+		}
+		if(value.length==0||value==""||value==undefined){
+			var text = document.getElementById("promt5");
+			text.style.marginTop="0px";
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}
+	}
+	function change4(){
+		var text = document.getElementById("promt6");
+		text.style.marginTop="-25px";
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback4(){
+		var value = document.getElementById("idCardNumber").value;
+		if(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)){
+			document.getElementById("idCardNumber").style.color="white";
+			isPass = true;
+		}else{
+			xtip.msg("请正确输入身份证号码",{icon:'e',type:'w'});
+			document.getElementById("idCardNumber").style.color="red";
+			isPass = false;
+		}
+		if(value.length==0||value==""||value==undefined){
+			var text = document.getElementById("promt6");
+			text.style.marginTop="0px";
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}
+	}
+	function change5(){
+		var text = document.getElementById("promt7");
+		text.style.marginTop="-25px";
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback5(){
+		var value = document.getElementById("nativePlace").value;
+		if(value.length==0||value==""||value==undefined || value.trim() == ""){
+			var text = document.getElementById("promt7");
+			xtip.msg("请输入籍贯",{icon:'e',type:'w'});
+			document.getElementById("nativePlace").style.color="red";
+			isPass = false;
+			text.style.marginTop="0px";
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}else{
+			document.getElementById("nativePlace").style.color="white";
+			isPass = true;
+		}
+	}
+	function change7(){
+		var text = document.getElementById("promt4");
+		text.style.color="#2192ff";
+		text.style.zIndex="1";
+	}
+	function changeback7(){
+		var year = document.getElementById("year").value;
+		var month = document.getElementById("month").value;
+		var day = document.getElementById("day").value;
+		var date = year + "-" + month + "-" +day;
+		if(/^\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}$/.test(date)){
+			document.getElementById("year").style.color="white";
+			document.getElementById("month").style.color="white";
+			document.getElementById("day").style.color="white";
+			isPass = true;
+		}else{
+			xtip.msg("请输入yy-MM-dd格式日期",{icon:'e',type:'w'});
+			document.getElementById("year").style.color="red";
+			document.getElementById("month").style.color="red";
+			document.getElementById("day").style.color="red";
+			isPass = false;
+		}
+		if(month>12||day>31){
+			xtip.msg("请输入yy-MM-dd格式日期",{icon:'e',type:'w'});
+			document.getElementById("year").style.color="red";
+			document.getElementById("month").style.color="red";
+			document.getElementById("day").style.color="red";
+			isPass = false;
+		}
+		if(year.length==0||year==""||year==undefined && month.length==0||month==""||month==undefined && day.length==0||day==""||day==undefined){
+			var text = document.getElementById("promt4");
+			text.style.color="#757575";
+			text.style.zIndex="-1";
+		}
+	}
+	var sexMan = document.getElementById("sex-man");
+	var sexWoman = document.getElementById("sex-woman");
+	function checkAll(){
+
+		var inputs = document.getElementsByTagName("input");
+		if(!$('input:checked').prop("checked")){
+			isPass = false;
+		}else if(sexMan.checked == true || sexWoman.checked == true){
+			isPass = true;
+		}
+		for(var i=0;i<inputs.length;i++){
+			var value = inputs[i].value;
+			if(value.length==0||value == ""||value.trim()==""){
+				isPass = false;
+				xtip.msg("格式有误，请检查",{icon:'e',type:'w'});
+			}
+			if(inputs[i].style.color=="red"){
+				isPass = false;
+				xtip.msg("格式有误，请检查",{icon:'e',type:'w'});
+			}
+		}
+		if(isPass){
+			return true
+		}else{
+			return false;
+		}
+	}
+
+
+	$('input[type=radio]').change(function() {
+		var m = $(this).val();//获取选中的值
+		$("#quest1").val(m);//把值保存到questi控件里面
+	})
+
+	$("#submit").click(function(){
+		if(checkAll()){
+			var param = $("#register-from").serialize();
+			console.log((param));
+			$.ajax({
+				url:'../registerServlet',
+				data:param,
+				method:'post',
+			}).done(function(data){
+				if(data.status==0){
+					alert("注册成功!将为您跳转到登陆页面");
+					console.log(data.obj);
+					location.href="../html/login.html";
+				}else if(data.status==1){
+					xtip.msg(data.msg,{icon:'e',type:'w'});
+				}
+			}).fail(function(){
+				console.log('error');
+			});
+		}else{
+		}
+	});
+</script>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>打卡（前台）</title>
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/framework.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            background: #4F4F4F;
+            min-width: 530px;
+            /* 可以往上调，根据需求改，最小555px */
+            min-height: 1200px;
+        }
+        /*		全局*/
+        /*main样式*/
+        
+        .main {
+            width: 1280px;
+            height: 500px;
+            background: #333;
+            box-shadow: 5px 5px 15px #161616;
+            border-radius: 5px;
+            /* position: absolute; */
+            margin: 0 auto;
+            top: 100px;
+            left: 200px;
+        }
+        
+        .daka-right {
+            width: 35%;
+            float: right;
+            background-color: #fff;
+            margin-top: 120px;
+            margin-right: 120px;
+        }
+        
+        .home {
+            width: 100%;
+        }
+        
+        .thead {
+            width: 100%;
+        }
+        
+        .thead li {
+            float: left;
+            width: 14.28%;
+            text-align: center;
+        }
+        
+        .home tbody>tr>td {
+            width: 14.28%;
+            height: 40px;
+            background: #ececec;
+            text-align: center;
+        }
+        
+        .buttonli {
+            width: 20%;
+            height: 50%;
+            float: left;
+            margin-left: 220px;
+            margin-top: 80px;
+        }
+        
+        button {
+            width: 160px;
+            height: 60px;
+            font-size: 20px;
+            float: left;
+            margin-top: 40px;
+            border-radius: 30px;
+            color: #fff;
+            border: blue;
+            outline: none;
+        }
+        
+        #button:hover {
+            box-shadow: 0 0 25px blue;
+        }
+        
+        #button {
+            background-color: dodgerblue;
+            transition: 1s;
+        }
+        
+        #button3:hover {
+            box-shadow: 0 0 25px fuchsia;
+        }
+        
+        #button3 {
+            background-color: fuchsia;
+            transition: 1s;
+        }
+        
+        #button4:hover {
+            box-shadow: 0 0 25px green;
+        }
+        
+        #button4 {
+            background-color: mediumspringgreen;
+            transition: 1s;
+        }
+        
+        #month {
+            text-align: center;
+        }
+        
+        .qiandao {
+            color: red;
+        }
+        /*content样式*/
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="portrait">
+            <span class="iconfont icon-touxiang-kong" style="display: block; color: #fff;text-align: center; width: 100%;height: 70%; font-size: 55px; float: left;"></span>
+            <p class="header-username">林瑞鑫</p>
+        </div>
+        <div class="header-title">
+            <p class="title-content">员工管理系统</p>
+        </div>
+        <div class="header-right">
+            <div class="right-email">
+                <span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-" style="display: block;font-size: 30px; color: #fff;text-align: center;margin-top: 24px;"></span>
+                <div class="email-menu">
+                    <ul class="email-ul">
+                        <li>任务</li>
+                        <li>申请</li>
+                        <li>公告</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-logout">
+                <div class="logout-content">
+                    <p class="font-logout">退出</p>
+                    <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="content">
+        <!-- 左侧导航 -->
+        <div class="nav">
+            <ul class="nav-ul">
+                <li id="jump-index" class="jump">首页</li>
+                <li id="jump-checkIn" class="jump">打卡</li>
+                <li id="jump-task" class="jump">任务</li>
+                <li id="jump-share" class="jump">资源分享</li>
+                <li id="jump-apply" class="jump">申请</li>
+                <li id="jump-notic" class="jump">公告</li>
+            </ul>
+        </div>
+        <!-- 主体内容 -->
+        <div class="main-out">
+            <div class="main">
+                <div class="daka-daka">
+                    <div class="buttonli">
+                        <button id="button">签到</button>
+                        <button id="button3">查询上月</button>
+                        <button id="button4">返回</button>
+                    </div>
+                    <div class="daka-right">
+                        <div class="home">
+                            <h1 id="month"></h1>
+                            <table cellspacing="1" cellpadding="1" class="home">
+                                <ul class="thead">
+                                    <li>日</li>
+                                    <li>一</li>
+                                    <li>二</li>
+                                    <li>三</li>
+                                    <li>四</li>
+                                    <li>五</li>
+                                    <li>六</li>
+                                </ul>
+                                <tbody id="tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script src="../js/jquery-3.4.1.js" type="text/javascript"></script>
+<script src="../js/calendar.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jump.js"></script>

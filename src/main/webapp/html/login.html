@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<!-- 弹窗 -->
+	<link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+	<link rel="shortcut icon" href="#"/>
+	<script src="../js/xtiper.min.js" type="text/javascript"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-family: "微软雅黑"
+		}
+		body{
+			background:#323232;
+		}
+		.main{
+			width: 1000px;
+			height: 450px;
+			margin: 0 auto;
+			align-content: center;
+			margin-top: 85px;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 4px 4px 15px #181818;
+		}
+		.main-left{
+			width: 50%;
+			height: 100%;
+			background-color:#1C6AB4;
+			position: relative
+		}
+		.main-right{
+			width: 50%;
+			height: 100%;
+			background:#2A2A2A;
+			margin-left: 500px;
+			margin-top: -450px;
+			position: relative;
+		}
+		.main-left-text1{
+			color: #FFFFFF;
+			font-size: 40px;
+			font-weight: bold;
+			padding-left: 50px;
+			padding-top: 170px;
+		}
+		.main-left-text2{
+			color: #fff;
+			font-size: 15px;
+			margin-top: 10px;
+			padding-left: 50px;
+		}
+		.userName{
+			outline: none;
+			width: 70%;
+			height: 30px;
+			border: none;
+			background-color:rgba(0,0,0,0);
+			border-bottom: 1px solid #2192ff;
+			position: absolute;
+			left: 10%;
+			padding-bottom: 3px;
+			font-size: 17px;
+			top: 30%;
+			color: #757575;
+			z-index: 10;
+			transition: all 0.3s;
+		}
+		.password{
+			outline: none;
+			width: 70%;
+			height: 30px;
+			border: none;
+			background-color:rgba(0,0,0,0);
+			border-bottom: 1px solid #2192ff;
+			position: absolute;
+			top: 10%;
+			left: 10%;
+			padding-bottom: 3px;
+			font-size: 17px;
+			top: 45%;
+			color: #757575;
+			z-index: 10;
+			transition: all 0.3s;
+		}
+		.userName:focus{
+			border-bottom: 1px solid #6BB6FF;
+		}
+		.password:focus{
+			border-bottom: 1px solid #6BB6FF;
+		}
+		.p1{
+			color: #757575;
+			font-size: 17px;
+			position: absolute;
+			top: 31%;
+			left: 10%;
+			transition: all 0.3s;
+		}
+		.p2{
+			color: #757575;
+			font-size: 17px;
+			position: absolute;
+			top: 46%;
+			left: 10%;
+			transition: all 0.3s;
+		}
+		.login{
+			outline: none;
+			width: 60px;
+			height: 35px;
+			margin: 0;
+			padding: 0;
+			border-radius: 2px;
+			background: #2192ff;
+			color: #fff;
+			border: none;
+			position: absolute;
+			left: 10%;
+			top: 57%;
+			transition: all 0.3s;
+		}
+		.login:hover{
+			background: #0060BE;
+		}
+		.forgotPassword{
+			text-decoration: none;
+			color: #2192ff;
+			position: absolute;
+			left: 10%;
+			top: 69%;
+		}
+		.forgotPassword:hover{
+			text-decoration: underline;
+		}
+		.signup-text{
+			position: absolute;
+			left: 10%;
+			top: 75%;
+			color: #fff;
+		}
+		.signup{
+			color: #2192ff;
+			text-decoration: none;
+		}
+		.signup:hover{
+			text-decoration: underline;
+		}
+	</style>
+<title>Login</title>
+</head>
+
+<body >
+	<div class="main">
+		<div class="main-left">
+			<p class="main-left-text1">员工管理系统</p>
+			<p class="main-left-text2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+		</div>
+		<div class="main-right">
+			<form autocomplete="off" class="login-form" onsubmit="return checkAll()">
+				<ul>
+					<li>
+						<input type="text" name="userName" id="userName" class="userName" onfocus="change1()" onblur="change1back()"/>
+						<p class="p1" id="p1">UserName</p>
+					</li>
+					<li>
+						<input type="password" name="password" id="password" class="password" onfocus="change2()" onblur="change2back()"/>
+						<p class="p2" id="p2">Password</p>
+					</li>
+					<li>
+						<input type="button" value="Login" class="login" id="login">
+					</li>
+				</ul>
+			</form>
+			<a href="#" class="forgotPassword">Forgot Password?</a>
+			<p class="signup-text">Do not have an account? <a href="register.html" class="signup">Signup</a></p>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../js/jquery-3.4.1.js"></script>
+<script>
+var userName = document.getElementById("userName");
+var password = document.getElementById("password");
+var isPass = false;
+ function change1(){
+	 var p1 = document.getElementById("p1");
+	 p1.style.color="#2192ff";
+	 p1.style.marginTop="-17px";
+	 p1.style.fontSize="12px";
+ }
+ function change2(){
+	 var p2 = document.getElementById("p2");
+	 p2.style.color="#2192ff";
+	 p2.style.marginTop="-17px";
+	 p2.style.fontSize="12px";
+ }
+ function change1back(){
+	var p1 = document.getElementById("p1");
+	var content = document.getElementById("userName").value;
+	if(/[\u4E00-\u9FA5]/.test(content)){
+		document.getElementById("userName").style.color="white";
+		isPass = true;
+		console.log(isPass);
+	}else{
+		xtip.msg("请正确输入用户名",{icon:'e',type:'w'});
+		document.getElementById("userName").style.color="red";
+		isPass = false;
+		console.log(isPass);
+	}
+	 if(content == '' || content == undefined || content == null || content.trim() == ""){
+	 	p1.style.color="#757575";
+	 	p1.style.marginTop="0px";
+	 	p1.style.fontSize="17px";
+	 }
+ }
+ function change2back(){
+	 var p2 = document.getElementById("p2");
+	 var content = document.getElementById("password").value;
+	 if(content == '' || content == undefined || content == null|| content.trim() == ""){
+		isPass = false;
+		xtip.msg("请输入密码",{icon:'e',type:'w'});
+	 	p2.style.color="#757575";
+	 	p2.style.marginTop="0px";
+	 	p2.style.fontSize="17px";
+	 }else{
+		 isPass = true;
+	 }
+	 console.log(isPass);
+ }
+
+function checkAll(){
+		if(userName.value==null || userName.value == "" || userName.value.trim() == ""){
+			isPass = false;
+		}
+		if(password.value==null || password.value == "" || password.value.trim() == ""){
+			isPass = false;
+		}
+		if(userName.style.color=="red"){
+			isPass = false;
+		}
+		if(password.style.color=="red"){
+			isPass = false;
+		}
+		if(isPass){
+			return true;
+		}else{
+			xtip.msg("请检查格式",{icon:'e',type:'w'});
+			return false;
+		}
+}
+$("#login").click(function(){
+	if(checkAll()){
+		$.ajax({
+			url:"../loginServlet",
+			data:{'userName':userName.value,'password':password.value},
+			method:"post"
+		}).done(function(data){
+			if(data.status == 0){
+				alert(data.msg);
+				location.href = "../html/index.html"
+			}else if(data.status == 1){
+				alert(data.msg);
+			}
+		}).fail(function () {
+			alert("请求失败")
+		})
+	}
+})
+</script>

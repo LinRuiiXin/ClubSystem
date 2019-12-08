@@ -1,0 +1,286 @@
+/*		progress*/
+.progress{
+    position: relative;
+    width: 85%;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-radius: 5px;
+    background: #333333;
+    box-shadow: 5px 5px 15px #161616;
+    z-index:-1000;
+}
+.progess-ul{
+    width: 90%;
+    height: 75%;
+    margin:0 auto;
+    position: relative;
+    top: 18px;
+}
+.progess-ul li{
+    width: 24.9%;
+    height: 100%;
+    float: left;
+}
+.progress-clockIn{
+    border-right: 1px #3E3E3E solid;
+}
+.progress-task{
+    border-right: 1px #3E3E3E solid;
+}
+.progress-apply{
+    border-right: 1px #3E3E3E solid;
+}
+
+/*		clockIn*/
+.clockIn{
+    width: 30%;
+    height: 100%;
+    background: #D81C1F;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px #161616;
+    background: #333333;
+    float: left;
+}
+.clockInRight{
+    width: 40%;
+    height: 80%;
+    margin-left: 165px;
+    margin-top: -137px;
+}
+.clockIn-btn{
+    width: 65px;
+    height: 65px;
+    outline: none;
+    background: #3AFF6F;
+    border: none;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin: 13px;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.clockIn-btn:hover{
+    background: #0CFF4D;
+}
+.change-btn{
+    width: 65px;
+    height: 65px;
+    outline: none;
+    background: #4CBFFF;
+    border: none;
+    border-radius: 50%;
+    margin: 10px;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.change-btn:hover{
+    background: #01A4FF;
+}
+/*		clock*/
+.face {
+    margin: 30px auto;
+    border-radius: 20%;
+    background-color: #505050;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    left: -45px;
+    top: 30px;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -4px;
+    margin-left: -4px;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px;
+    background-color: #333;
+}
+.seconds-hand {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    margin-left: -1px;
+    width: 2px;
+    height: 45px;
+    background-color: #f03c3c;
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
+}
+.minute-hand {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    margin-left: -2px;
+    width: 4px;
+    height: 45px;
+    background-color: #333;
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
+}
+.hour-hand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -2px;
+    margin-top: -30px;
+    width: 4px;
+    height: 30px;
+    background-color: #333;
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
+}
+.smooth {
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -ms-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+
+/*		applyForFunding*/
+.applyForFunding{
+    width: 35%;
+    height: 100%;
+    background: #333;
+    box-shadow: 5px 5px 15px #161616;
+    border-radius: 5px;
+    margin-left: 354px;
+}
+.applyForFunding-form{
+    margin: 0 auto;
+/*			border: 1px solid #fff;*/
+    width: 80%;
+    height: 80%;
+    position: relative;
+    top: 23px;
+}
+.applyForFunding-form li{
+    text-align: center;
+}
+.applyAmount{
+    outline: none;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: #2192ff;
+    width: 47px;
+    height: 25px;
+    border-bottom: 1px solid #808080;
+    text-align: center;
+    display: inline-block;
+}
+.applyReason{
+    outline: none;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    border-bottom: #808080 1px solid;
+    color: #fff;
+    margin-top: 15px;
+    padding: 10px;
+}
+.promptReason{
+    color: #808080; 
+    margin-top: -30px;
+    position: relative; 
+    left: -59px;
+    font-size: 10px;
+    transition: all 0.3s;
+    z-index: -1;
+    display: block;
+}
+.applySubmit{
+    border: none;
+    background: #424242;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 30px;
+    color: #fff;
+    transition: all 0.2s;
+    position: absolute;
+    left: 112px;
+    top: 106px;
+}
+.applySubmit:hover{
+    background: #535353;
+}
+
+/*		line2-userInfo*/
+.line2-userInfo{
+    width: 25%;
+    height: 100%;
+    background: #333;
+    position: relative;
+    top: -220px;
+    border-radius: 5px;
+    left: 758px;
+    box-shadow: 5px 5px 15px #161616;
+}
+.userInfo-ul1{
+    width: 100%;
+    height: 50px;
+    background: ;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}
+.userInfo-name{
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    top: 3px;
+}
+.userInfo-role{
+    color: #757575;
+    font-size: 1px;
+    position: relative;
+    top: 2px;
+}
+.userInfo-ul2{
+    width:100%;
+    height: 70px;
+    position: relative;
+    top: -5px;
+}
+.userInfo-ul2 li{
+    float: left;
+    margin-left: 10.5px;
+}
+.userInfo-span1{
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+.userInfo-span2{
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+.userInfo-span3{
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+
+/*		line3*/
+.line3{
+    width: 85%;
+    margin: 0 auto;
+    border-radius: 5px;
+    position: relative;
+    top: -40px;
+}

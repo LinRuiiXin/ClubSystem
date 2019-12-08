@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="../css/framework.css" rel="stylesheet" type="text/css" />
+    <link href="../font/iconfont.css" rel="stylesheet" type="text/css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            background: #4F4F4F;
+            min-width: 530px;
+            /* 可以往上调，根据需求改，最小555px */
+            min-height: 1200px;
+        }
+        
+        .left-gonggao {
+            background: #384BB7;
+            color: #fff;
+        }
+        
+        .main {
+            width: 1280px;
+            height: 550px;
+            background: #333;
+            box-shadow: 5px 5px 15px #161616;
+            border-radius: 5px;
+            position: relative;
+            top: 20px;
+            left: 200px;
+            padding-top: 50px;
+            margin: 0 auto;
+        }
+        
+        .return {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 60px;
+            top: 20px;
+        }
+        
+        .return a {
+            color: #bb86fc;
+            font-size: 50px;
+        }
+        
+        .return a:hover {
+            color: #fff;
+        }
+        
+        .gonggaoname {
+            width: 30%;
+            height: 50px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .gonggaoname h1 {
+            color: #fff;
+        }
+        
+        .date {
+            width: 160px;
+            height: 40px;
+            margin-left: 1000px;
+        }
+        
+        .date h3 {
+            color: #fff;
+        }
+        
+        .gonggaocontent {
+            width: 1009px;
+            height: 405px;
+            background-color: rgb(65, 58, 73);
+            margin: 0 auto;
+            /* line-height: 35px;*/
+            /* letter-spacing: 1px; */
+            /* text-indent: 2em; */
+            box-shadow: 2px 2px 25px rgb(43, 43, 43);
+            border-radius: 10px;
+            padding-top: 25px;
+            padding-right: 15px;
+        }
+        
+        .gonggaocontent p {
+            color: #fff;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="portrait">
+            <span class="iconfont icon-touxiang-kong" style="display: block; color: #fff;text-align: center; width: 100%;height: 70%; font-size: 55px; float: left;"></span>
+            <p class="header-username">林瑞鑫</p>
+        </div>
+        <div class="header-title">
+            <p class="title-content">员工管理系统</p>
+        </div>
+        <div class="header-right">
+            <div class="right-email">
+                <span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-" style="display: block;font-size: 30px; color: #fff;text-align: center;margin-top: 24px;"></span>
+                <div class="email-menu">
+                    <ul class="email-ul">
+                        <li>任务</li>
+                        <li>申请</li>
+                        <li>公告</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-logout">
+                <div class="logout-content">
+                    <p class="font-logout">退出</p>
+                    <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="content">
+        <!-- 左侧导航 -->
+        <div class="nav">
+            <ul class="nav-ul">
+
+                <li id="jump-index" class="jump">首页</li>
+                <li id="jump-checkIn" class="jump">打卡</li>
+                <li id="jump-task" class="jump">任务</li>
+                <li id="jump-share" class="jump">资源分享</li>
+                <li id="jump-apply" class="jump">申请</li>
+                <li id="jump-notic" class="jump">公告</li>
+            </ul>
+        </div>
+        <!-- 主体内容 -->
+        <div class="main">
+            <div class="return">
+                <a href="#"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
+            </div>
+            <div class="gonggaoname">
+                <h1>公告1</h1>
+            </div>
+            <div class="date">
+                <h3>2019.12.1</h3>
+            </div>
+            <div class="gonggaocontent">
+                <p>公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容</p>
+            </div>
+        </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../js/jump.js"></script>
