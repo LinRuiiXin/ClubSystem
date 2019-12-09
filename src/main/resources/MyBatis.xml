@@ -21,5 +21,6 @@
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/ShareMapper.xml"/>
         <mapper resource="mapper/ApplyMapper.xml"/>
+        <mapper resource="mapper/WorkTimeMapper.xml"/>
     </mappers>
 </configuration>

@@ -39,6 +39,7 @@
                 $month = $("#month"),
                 _nullnei = '';
             var p = document.createElement("p");
+            p.setAttribute("id","monthContent");
             var monthText = document.createTextNode(monthNum);
             p.appendChild(monthText);
             $month.append(p);

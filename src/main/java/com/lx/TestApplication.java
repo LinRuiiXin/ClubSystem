@@ -5,6 +5,7 @@ import com.lx.POJO.Share;
 import com.lx.POJO.User;
 import com.lx.mapper.ShareMapper;
 import com.lx.mapper.UserMapper;
+import com.lx.utils.DateUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,7 +14,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.xml.crypto.Data;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -88,5 +93,20 @@ public class TestApplication {
         Share share = new Share();
         share.setUploadTime(new Date());
         System.out.println(JSON.toJSONString(share));
+    }
+    @Test
+    public void m9(){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+//        System.out.println(calendar.get(Calendar.MONTH)+1);
+        System.out.println(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+    }
+    @Test
+    public void m10(){
+        String startDate = DateUtil.getStartDate();
+        System.out.println(startDate);
+        String endDate = DateUtil.getEndDate();
+        System.out.println(endDate);
     }
 }
