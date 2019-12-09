@@ -9,4 +9,7 @@
     <select id="queryAll" resultType="com.lx.POJO.Apply">
         select * from apply order by id desc
     </select>
+    <select id="getPassCountByApplyId" resultType="java.lang.Integer">
+        select count(*) from apply_buffer where applyId = #{applyId}
+    </select>
 </mapper>

@@ -4,6 +4,7 @@ import com.lx.POJO.Apply;
 import com.lx.POJO.User;
 import com.lx.dto.Result;
 import com.lx.service.ApplyService;
+import com.lx.utils.ApplyProgressUtil;
 import com.lx.utils.JsonUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

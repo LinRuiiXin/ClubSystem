@@ -13,7 +13,7 @@ public class Apply{
     private Date applyDate;
     private int status;
     private int clubId;
-
+    private String statusInfo;
     public Apply(){
 
     }
@@ -25,6 +25,14 @@ public class Apply{
         this.applyDate = applyDate;
         this.status = status;
         this.clubId = clubId;
+    }
+
+    public String getStatusInfo() {
+        return statusInfo;
+    }
+
+    public void setStatusInfo(String statusInfo) {
+        this.statusInfo = statusInfo;
     }
 
     public int getId() {
@@ -83,6 +91,7 @@ public class Apply{
         this.clubId = clubId;
     }
 
+
     @Override
     public String toString() {
         return "Apply{" +
@@ -93,6 +102,7 @@ public class Apply{
                 ", applyDate=" + applyDate +
                 ", status=" + status +
                 ", clubId=" + clubId +
+                ", statusInfo='" + statusInfo + '\'' +
                 '}';
     }
 }

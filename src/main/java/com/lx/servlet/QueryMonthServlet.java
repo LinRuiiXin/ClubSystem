@@ -1,5 +1,6 @@
 package com.lx.servlet;
 
+import com.lx.POJO.User;
 import com.lx.dto.Result;
 import com.lx.service.WorkTimeService;
 import com.lx.utils.DateUtil;
@@ -26,7 +27,7 @@ public class QueryMonthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        User user = req.getSession().getAttribute("User");
+        User user = (User)req.getSession().getAttribute("User");
         if(user == null){
             JsonUtils.returnJson(resp,new Result(1,"登录超时，请重新登录",null));
         }else{

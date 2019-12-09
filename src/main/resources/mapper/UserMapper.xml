@@ -16,4 +16,7 @@
     <select id="queryUserByUserNameAndPsw" resultType="User">
         select * from user where userName = #{userName} and password = #{password}
     </select>
+    <select id="queryAdminCount" resultType="java.lang.Integer">
+        select count(*) from user where status = 1
+    </select>
 </mapper>

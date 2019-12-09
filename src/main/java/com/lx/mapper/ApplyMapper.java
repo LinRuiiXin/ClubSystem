@@ -9,4 +9,5 @@ import java.util.List;
 public interface ApplyMapper {
     void insertApply(Apply apply);
     List<Apply> queryAll();
+    int getPassCountByApplyId(int applyId);
 }

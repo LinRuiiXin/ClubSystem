@@ -240,15 +240,7 @@
 					}
 					for(var i = 0;i<applies.length;i++){
 						var apply = applies[i];
-						var status;
-						if(apply.status == 0){
-							status = "正在审核";
-						}else if(apply.status == 1){
-							status = "驳回";
-						}else{
-							status = "成功";
-						}
-						$("#tbody").append("<tr><td class=\"user-name\">"+apply.money+"</td><td class=\"user-email\">"+apply.reason+"</td><td class=\"user-phone\">"+status+"</td><td class=\"user-mobile\">"+apply.applyDate+"</td></tr>")
+						$("#tbody").append("<tr><td class=\"user-name\">"+apply.money+"</td><td class=\"user-email\">"+apply.reason+"</td><td class=\"user-phone\">"+apply.statusInfo+"</td><td class=\"user-mobile\">"+apply.applyDate+"</td></tr>")
 					}
 				}
 			}
@@ -322,6 +314,7 @@
 			}).done(function(data){
 				if(data.status == 0){
 					alert(data.msg);
+					location.reload();
 				}else if(data.status == 1){
 					xtip.msg(data.msg,{icon:'e',type:'w'});
 				}

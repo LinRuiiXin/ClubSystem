@@ -12,4 +12,5 @@ public interface UserMapper {
     void insertUser(User user);
     int isHasName(String userName);
     User queryUserByUserNameAndPsw(@Param("userName") String userName, @Param("password") String password);
+    int queryAdminCount();
 }
