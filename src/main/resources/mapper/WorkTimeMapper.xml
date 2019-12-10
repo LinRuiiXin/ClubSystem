@@ -6,4 +6,7 @@
     <select id="queryWorkTimeByIdStEt" resultType="java.util.Date">
         select checkInTime from work_time where userId = #{userId} and checkInTime between #{startDate} and #{endDate}
     </select>
+    <select id="queryCountByIdStEt" resultType="java.lang.Integer">
+        select count(*) from work_time where userId = #{userId} and checkInTime between #{startDate} and #{endDate}
+    </select>
 </mapper>

@@ -12,4 +12,13 @@
     <delete id="deleteLostFile">
         delete from share where fileName = #{fileName}
     </delete>
+    <select id="queryTodayShareCount" resultType="java.lang.Integer">
+        select count(*) from share where  uploadTime = #{today} and clubId = #{clubId}
+    </select>
+    <select id="queryShareCountByUserName" resultType="java.lang.Integer">
+        select count(*) from share where userName = #{userName}
+    </select>
+    <select id="queryFirstSixShareByClubId" resultType="com.lx.POJO.Share">
+        select * from share where clubId = #{clubId} order by id desc limit 0,6
+    </select>
 </mapper>

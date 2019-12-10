@@ -6,10 +6,16 @@
     <insert id="insertApply" parameterType="com.lx.POJO.Apply">
         insert into apply(userId,money,reason,applyDate,status,clubId) values (#{userId},#{money},#{reason},now(),0,#{clubId})
     </insert>
-    <select id="queryAll" resultType="com.lx.POJO.Apply">
-        select * from apply order by id desc
+    <select id="queryAllByUserId" resultType="com.lx.POJO.Apply">
+        select * from apply where userId = #{userId} order by id desc
     </select>
     <select id="getPassCountByApplyId" resultType="java.lang.Integer">
         select count(*) from apply_buffer where applyId = #{applyId}
+    </select>
+    <select id="queryLastApplyByUserId" resultType="com.lx.POJO.Apply">
+        select * from apply where userId = #{userId} order by id desc limit 0,1
+    </select>
+    <select id="queryCountByUserId" resultType="java.lang.Integer">
+        select count(*) from apply where userId = #{userId}
     </select>
 </mapper>

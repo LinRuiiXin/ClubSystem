@@ -40,4 +40,23 @@ public class ApplyProgressUtil {
         }
         return applies;
     }
+    public static String getLastApplyProgress(Apply apply){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        UserMapper userMapper = context.getBean(UserMapper.class);
+        ApplyMapper applyMapper = context.getBean(ApplyMapper.class);
+        if(apply.getStatus()==0){
+            int adminCount = userMapper.queryAdminCount();
+            int passCount = applyMapper.getPassCountByApplyId(apply.getId());
+            if(passCount == 0){
+                return "未审核";
+            }else{
+                DecimalFormat decimalFormat = new DecimalFormat("0.00");
+                String format = decimalFormat.format((float) passCount / adminCount);
+                String progress = format.substring(2,4);
+                return progress+"%";
+            }
+        }else{
+            return "0%";
+        }
+    }
 }

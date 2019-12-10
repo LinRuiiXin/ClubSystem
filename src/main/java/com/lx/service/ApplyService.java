@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ApplyService {
     void insertApply(Apply apply);
-    List<Apply> queryAll();
+    List<Apply> queryAllByUserId(int userId);
 }

@@ -1,10 +1,12 @@
 package com.lx;
 
 import com.alibaba.fastjson.JSON;
+import com.lx.POJO.IndexInfo;
 import com.lx.POJO.Share;
 import com.lx.POJO.User;
 import com.lx.mapper.ShareMapper;
 import com.lx.mapper.UserMapper;
+import com.lx.service.LoadIndexService;
 import com.lx.utils.DateUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -108,5 +110,15 @@ public class TestApplication {
         System.out.println(startDate);
         String endDate = DateUtil.getEndDate();
         System.out.println(endDate);
+    }
+    @Test
+    public void m11(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        LoadIndexService loadIndexService = context.getBean(LoadIndexService.class);
+        User user = new User();
+        user.setId(51);
+        user.setClubId(0);
+        IndexInfo indexInfo = loadIndexService.getIndexInfo(user);
+        System.out.println(indexInfo);
     }
 }

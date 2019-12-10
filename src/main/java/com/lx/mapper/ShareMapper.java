@@ -11,4 +11,7 @@ public interface ShareMapper {
     void insertShare(@Param("userName")String userName,@Param("fileName")String fileName,@Param("clubId")int clubId);
     List<Share> queryByClubId(int clubId);
     void deleteLostFile(String fileName);
+    int queryTodayShareCount(@Param("today") String today,@Param("clubId") int clubId);
+    int queryShareCountByUserName(String userName);
+    List<Share> queryFirstSixShareByClubId(int clubId);
 }

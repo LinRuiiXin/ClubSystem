@@ -21,8 +21,8 @@ public class ApplyServiceImpl implements ApplyService {
     }
 
     @Override
-    public List<Apply> queryAll() {
-        List<Apply> applies = applyMapper.queryAll();
+    public List<Apply> queryAllByUserId(int userId) {
+        List<Apply> applies = applyMapper.queryAllByUserId(userId);
 //            获取当前申请进度
         List<Apply> applyWithProgressList = ApplyProgressUtil.getProgress(applies);
         return applyWithProgressList;
