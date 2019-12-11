@@ -44,19 +44,23 @@ public class ApplyProgressUtil {
         ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
         UserMapper userMapper = context.getBean(UserMapper.class);
         ApplyMapper applyMapper = context.getBean(ApplyMapper.class);
-        if(apply.getStatus()==0){
-            int adminCount = userMapper.queryAdminCount();
-            int passCount = applyMapper.getPassCountByApplyId(apply.getId());
-            if(passCount == 0){
-                return "0%";
-            }else{
-                DecimalFormat decimalFormat = new DecimalFormat("0.00");
-                String format = decimalFormat.format((float) passCount / adminCount);
-                String progress = format.substring(2,4);
-                return progress+"%";
-            }
-        }else{
+        if(apply == null){
             return "0%";
+        }else{
+            if(apply.getStatus()==0){
+                int adminCount = userMapper.queryAdminCount();
+                int passCount = applyMapper.getPassCountByApplyId(apply.getId());
+                if(passCount == 0){
+                    return "0%";
+                }else{
+                    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+                    String format = decimalFormat.format((float) passCount / adminCount);
+                    String progress = format.substring(2,4);
+                    return progress+"%";
+                }
+            }else{
+                return "0%";
+            }
         }
     }
 }

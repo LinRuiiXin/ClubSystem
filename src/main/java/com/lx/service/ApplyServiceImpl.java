@@ -4,6 +4,7 @@ import com.lx.POJO.Apply;
 import com.lx.mapper.ApplyMapper;
 import com.lx.mapper.UserMapper;
 import com.lx.utils.ApplyProgressUtil;
+import com.lx.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +31,14 @@ public class ApplyServiceImpl implements ApplyService{
     @Override
     public boolean checkStatus(int userId) {
         Apply apply = applyMapper.queryLastApplyByUserId(userId);
-        if(apply.getStatus() == 0){
-            return false;
-        }else{
+        if(apply == null){
             return true;
+        }else{
+            if(apply.getStatus() == 0){
+                return false;
+            }else{
+                return true;
+            }
         }
     }
 }
