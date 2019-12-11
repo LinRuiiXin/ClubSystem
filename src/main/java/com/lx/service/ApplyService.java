@@ -7,4 +7,5 @@ import java.util.List;
 public interface ApplyService {
     void insertApply(Apply apply);
     List<Apply> queryAllByUserId(int userId);
+    boolean checkStatus(int userId);
 }

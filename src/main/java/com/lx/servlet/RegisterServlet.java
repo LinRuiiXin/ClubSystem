@@ -31,6 +31,8 @@ public class RegisterServlet extends HttpServlet {
             resp.setCharacterEncoding("UTF-8");
             URLDecoder.decode((String)req.getParameter("userName"),"UTF-8");
             String name = req.getParameter("userName").trim();
+            String clubId = req.getParameter("clubId");
+            System.out.println(clubId);
             ApplicationContext applicationContext = new ClassPathXmlApplicationContext("Application.xml");
             UserService userService = applicationContext.getBean(UserService.class);
             if(userService.isHasName(name)){

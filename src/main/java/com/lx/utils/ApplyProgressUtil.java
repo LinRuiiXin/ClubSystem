@@ -48,7 +48,7 @@ public class ApplyProgressUtil {
             int adminCount = userMapper.queryAdminCount();
             int passCount = applyMapper.getPassCountByApplyId(apply.getId());
             if(passCount == 0){
-                return "未审核";
+                return "0%";
             }else{
                 DecimalFormat decimalFormat = new DecimalFormat("0.00");
                 String format = decimalFormat.format((float) passCount / adminCount);

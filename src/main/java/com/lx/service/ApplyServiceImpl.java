@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ApplyServiceImpl implements ApplyService {
+public class ApplyServiceImpl implements ApplyService{
     @Autowired
     ApplyMapper applyMapper;
     @Autowired
@@ -26,5 +26,14 @@ public class ApplyServiceImpl implements ApplyService {
 //            获取当前申请进度
         List<Apply> applyWithProgressList = ApplyProgressUtil.getProgress(applies);
         return applyWithProgressList;
+    }
+    @Override
+    public boolean checkStatus(int userId) {
+        Apply apply = applyMapper.queryLastApplyByUserId(userId);
+        if(apply.getStatus() == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

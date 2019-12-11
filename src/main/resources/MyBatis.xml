@@ -23,5 +23,6 @@
         <mapper resource="mapper/ApplyMapper.xml"/>
         <mapper resource="mapper/WorkTimeMapper.xml"/>
         <mapper resource="mapper/TaskMapper.xml"/>
+        <mapper resource="mapper/ClubMapper.xml"/>
     </mappers>
 </configuration>

@@ -156,7 +156,7 @@
 <body >
 	<div class="main">
 		<div class="main-left">
-			<p class="main-left-text1">员工管理系统</p>
+			<p class="main-left-text1">社团管理系统</p>
 			<p class="main-left-text2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 		</div>
 		<div class="main-right">
@@ -260,13 +260,13 @@ $("#login").click(function(){
 			method:"post"
 		}).done(function(data){
 			if(data.status == 0){
-				alert(data.msg);
 				location.href = "../html/index.html"
-			}else if(data.status == 1){
 				alert(data.msg);
+			}else if(data.status == 1){
+				xtip.msg(data.msg,{icon:'e',type:'w'});
 			}
 		}).fail(function () {
-			alert("请求失败")
+			xtip.msg("请求失败",{icon:'e',type:'w'});
 		})
 	}
 })

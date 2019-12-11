@@ -52,7 +52,7 @@
 			<p class="header-username">林瑞鑫</p>
 		</div>
 		<div class="header-title">
-			<p class="title-content">员工管理系统</p>
+			<p class="title-content">社团管理系统</p>
 		</div>
 		<div class="header-right">
 			<div class="right-email">
@@ -138,22 +138,16 @@
 					</div>
 			<!--		资金申请表单-->
 					<div class="applyForFunding">
-						<form action="#" class="applyForFunding-form" autocomplete="off">
+						<form class="applyForFunding-form" autocomplete="off">
 							<ul class="applyForFunding-ul1">
 								<li style="color: #fff; font-weight: bold; font-size: 20px; margin-bottom: 10px;">资金申请</li>
-								<li>
-									<p style="display: inline-block; color: #808080; position: relative; top: 3px;">输入金额：</p>
-									<input class="applyAmount" id="applyAmount"/>
-									<p style="display: inline-block; color: #808080; position: relative; top: 3px;">(元)</p>
-								</li>
-								<li>
-									<input id="applyReason" class="applyReason" onFocus="change1()" onBlur="change1Back()" name="applyReason" type="text"/>
-									<p id="promptReason" class="promptReason">申请理由</p>
-								</li>
+								<li style="margin-top: 20px;" class="ul1-money"><input type="text" class="input-money" name="money" id="input-money" placeholder="请输入金额"/></li>
+								<li style="border-bottom: 1px dashed rgb(85, 85, 85); margin-top: 12px;"></li>
+								<li style="margin-top: 13px;" class="ul1-reason"><input type="text" class="input-reason" id="input-reason" name="reason" placeholder="请输入理由"/></li>
 							</ul>
 							<ul class="applyForFunding-ul2">
 								<li>
-									<input onFocus="change2()" onBlur="change2Back()" type="submit" class="applySubmit" id="applySubmit"/>
+										<input type="button" class="applySubmit" id="applySubmit" value="提交"/>
 								</li>
 							</ul>
 						</form>
@@ -433,6 +427,73 @@
 			xtip.msg("请求失败",{icon:'e',type:'w'});
 		})
 	}
+	var isPass = false;
+	$("#input-money").blur(function(){
+		var money = $("#input-money").val();
+		console.log(money);
+		if(/^[0-9]{1,4}$/.test(money)){
+			$("#input-money").css("color","white");
+			isPass = true;
+		}else{
+			$("#input-money").css("color","red");
+			isPass = false;
+			xtip.msg("请输入四位以内的数",{icon:'e',type:'w'});
+		}
+	})
+	$("#input-reason").blur(function(){
+		var reason = $("#input-reason").val();
+		console.log(reason);
+		if(reason == null || reason == "" || reason.trim() == ""){
+			$("#input-reason").css("color","red");
+			isPass = false;
+			xtip.msg("请输入申请理由",{icon:'e',type:'w'});
+		}else{
+			$("#input-reason").css("color","white");
+			isPass = true;
+		}
+	})
+	function checkAll(){
+		var money = $("#input-money");
+		var reason = $("#input-reason");
+		if(money.val() == null || money.val() == "" || money.val().trim() == ""){
+			xtip.msg("请检查格式",{icon:'e',type:'w'});
+			isPass = false;
+		}
+		if(reason.val() == null || reason.val() == "" || reason.val().trim() == ""){
+			xtip.msg("请检查格式",{icon:'e',type:'w'});
+			isPass = false;
+		}
+		if(money.css('color') == "red"){
+			xtip.msg("请检查格式",{icon:'e',type:'w'});
+			isPass = false;
+		}
+		if(reason.css('color') == "red"){
+			xtip.msg("请检查格式",{icon:'e',type:'w'});
+			isPass = false;
+		}
+		if(isPass){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	$("#applySubmit").click(function(){
+		if(checkAll()){
+			$.ajax({
+				url:"../applyServlet",
+				data:{"money":$("#input-money").val(),"reason":$("#input-reason").val()}
+			}).done(function(data){
+				if(data.status == 0){
+					alert(data.msg);
+				}else if(data.status ==1){
+					xtip.msg(data.msg,{icon:'e',type:'w'});
+				}
+			}).fail(function(){
+				xtip.msg("请求失败",{icon:'e',type:'w'});
+			})
+		}
+	})
+
 //	clock
 	$(document).ready(function() {
     $('body').append('<div class="time">');

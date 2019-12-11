@@ -263,7 +263,7 @@
 			float: left;
 		}
 		.nativePlace{
-			width: 250px;
+			width: 150px;
 			color: #757575;
 		}
 		.submit{
@@ -337,6 +337,16 @@
 		span a{
 			color: #2192ff;
 		}
+		select{
+			width: 70px;
+			height: 30px;
+			outline: none;
+			background: none;
+			color: #fff;
+			border-radius: 5px;
+			margin-left: 55px;
+			font-size: 10px;
+		}
 	</style>
 	<title>Register</title>
 </head>
@@ -344,7 +354,7 @@
 <body>
 <div class="main">
 	<div class="main-left">
-		<p class="main-left-text1">员工管理系统</p>
+		<p class="main-left-text1">社团管理系统</p>
 		<p class="main-left-text2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 	</div>
 	<div class="main-right">
@@ -386,6 +396,8 @@
 					<input onfocus="change5()" onBlur="changeback5()" type="text" name="address" class="nativePlace" id="nativePlace"/>
 				</li>
 				<li class="register-submit">
+					<select name = "clubId" id="clubs">
+					</select>
 					<input type="button" id="submit" name="submit" class="submit" value="提交	"/>
 				</li>
 			</ul>
@@ -406,6 +418,24 @@
 </script>
 <script>
 	var isPass = false;
+	window.onload = function(){
+		$.ajax({
+			url:"../loadRegisterServlet",
+			method:"get"
+		}).done(function(data){
+			if(data.status == 0){
+				var clubs = data.obj;
+				for(var i=0;i<clubs.length;i++){
+					var club = clubs[i]
+					$("#clubs").append("<option value='"+club.id+"'>"+club.clubName+"</option>")
+				}
+			}else if(data.status == 1){
+				xtip.msg(data.msg,{icon:'e',type:'w'});
+			}
+		}).fail(function(){
+			xtip.msg("请求失败",{icon:'e',type:'w'});
+		})
+	}
 	function change1(){
 		var text = document.getElementById("promt1");
 		text.style.marginTop="-25px";

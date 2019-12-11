@@ -32,13 +32,17 @@ public class ApplyServlet extends HttpServlet {
             JsonUtils.returnJson(resp,new Result(1,"登录超时，请重新登录",null));
         }else{
             ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
-            URLEncoder.encode(req.getParameter("money"),"UTF-8");
-            int money = Integer.valueOf(req.getParameter("money"));
-            String reason = req.getParameter("reason");
-            Apply apply = new Apply(0,user.getId(),money,reason,null,0,user.getClubId());
             ApplyService applyService = context.getBean(ApplyService.class);
-            applyService.insertApply(apply);
-            JsonUtils.returnJson(resp,new Result(0,"成功",null));
+            if(!applyService.checkStatus(user.getId())){
+                JsonUtils.returnJson(resp,new Result(1,"同一时间只能发一次申请",null));
+            }else{
+                URLEncoder.encode(req.getParameter("reason"),"UTF-8");
+                int money = Integer.valueOf(req.getParameter("money"));
+                String reason = req.getParameter("reason");
+                Apply apply = new Apply(0,user.getId(),money,reason,null,0,user.getClubId());
+                applyService.insertApply(apply);
+                JsonUtils.returnJson(resp,new Result(0,"成功",null));
+            }
         }
     }
 }
