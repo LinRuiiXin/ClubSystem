@@ -260,8 +260,12 @@ $("#login").click(function(){
 			method:"post"
 		}).done(function(data){
 			if(data.status == 0){
-				location.href = "../html/index.html"
-				alert(data.msg);
+				var user = data.obj;
+				if(user.status == 0){
+					location.href = "../html/index.html";
+				}else if(user.status == 1){
+					location.href = "../html/adminIndex.html";
+				}
 			}else if(data.status == 1){
 				xtip.msg(data.msg,{icon:'e',type:'w'});
 			}

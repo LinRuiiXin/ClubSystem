@@ -6,4 +6,7 @@
     <select id="queryRemTask" resultType="java.lang.Integer">
         select count(*) from task where userId = #{userId} and status = 0
     </select>
+    <select id="queryUserRemTask" resultType="java.lang.Integer">
+        select count(*) from task where releaseName = #{releaseName} and status = 0
+    </select>
 </mapper>

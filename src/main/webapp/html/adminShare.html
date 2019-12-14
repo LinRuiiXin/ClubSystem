@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="../font/iconfont.css"/>
+	<link rel="stylesheet" href="../css/framework.css"/>
+	<link href="../css/styles.imageuploader.css" rel="stylesheet" type="text/css">
+<!--	<link rel="shortcut icon" href="../favicon.ico">-->
+	<!-- 弹窗 -->
+	<link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+	<link rel="shortcut icon" href="#"/>
+	<script src="../js/xtiper.min.js" type="text/javascript"></script>
+<!--	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />-->
+<!--	<link rel="stylesheet" type="text/css" href="../css/demo.css" />-->
+	<link rel="stylesheet" type="text/css" href="../css/component.css" />
+	<style>
+		*{
+			margin: 0 ;
+			padding: 0;
+			list-style: none;
+		}
+		html{
+			height: 100%;
+			width: 100%;
+		}
+		body{
+			width: 100%;
+			height: 100%;
+			background: #4F4F4F;
+			min-width: 530px;
+			/* 可以往上调，根据需求改，最小555px */
+			min-height: 1200px;
+		}
+		
+		/*		main*/
+		.main{
+			width: 1189px;
+			display:block;
+			left: 160px;
+			height: 750px;
+			margin: 0 auto;
+			z-index: 1;
+		}
+		.sharePool{
+			position: relative;
+			top: 70px;
+		}
+	</style>
+    <title>Document</title>
+</head>
+<body>
+	 <!-- 头部 -->
+	<div class="header">
+		<div class="portrait">
+			<span class="iconfont icon-touxiang-kong" style="display: block; color: #fff;text-align: center; width: 100%;height: 70%; font-size: 55px; float: left;"></span>
+			<p class="header-username">林瑞鑫</p>
+		</div>
+		<div class="header-title">
+			<p class="title-content">社团管理系统</p>
+		</div>
+		<div class="header-right">
+			<div class="right-email">
+				<span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-" style="display: block;font-size: 30px; color: #fff;text-align: center;margin-top: 24px;"></span>
+				<div class="email-menu">
+					<ul class="email-ul">
+						<li>任务</li>
+						<li>申请</li>
+						<li>公告</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right-logout">
+				<div id="logout" class="logout-content">
+					<p class="font-logout">退出</p>
+					<span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 -->
+	<div class="content">
+		<!-- 左侧导航 -->
+		<div class="nav">
+			<ul class="nav-ul">
+				<li id="jump-index" class="jump">首页</li>
+				<li id="jump-checkIn" class="jump">打卡</li>
+				<li id="jump-task" class="jump">任务</li>
+				<li id="jump-share" class="jump">资源分享</li>
+				<li id="jump-apply" class="jump">申请</li>
+				<li id="jump-notic" class="jump">公告</li>
+			</ul>
+		</div>
+		<!-- 主体内容 -->
+		<div class="main-out">
+			<!--主体内容-->
+	<div class="main">
+		<div style="overflow: hidden" class="uploader__box js-uploader__box l-center-box">
+			<form method="POST" enctype="multipart/form-data">
+				<div class="uploader__contents">
+					<label class="button button--secondary" for="fileinput">选择文件</label>
+					<input name="fileinput" id="fileinput" class="uploader__file-input" type="file" multiple value="Select Files">
+				</div>
+				<input class="button button--big-bottom" type="button" value="Upload Selected Files">
+			</form>
+		  </div>   
+		  <div class="sharePool" >
+			<table>
+				<thead>
+					<tr>
+						<th>上传者</th>
+						<th>文件名</th>
+						<th></th>
+						<th>上传时间</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+<!--					<tr><td class="user-name">gary coleman</td><td class="user-email">gary.coleman21@example.com</td><td class="user-phone">(398)-332-5385</td><td class="user-mobile">(888)-677-3719</td></tr>-->
+				</tbody>
+			</table>
+		  </div>
+	</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../js/jquery-3.4.1.js"></script>
+<!--<script src="../js/jquery.ba-throttle-debounce.min.js"></script>-->
+<script src="../js/jquery.stickyheader.js"></script>
+<script src="../js/plugin.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/adminJump.js"></script>
+<script src="../js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<!--<script>window.jQuery || document.write('<script src="../js/jquery-1.11.0.min.js"><\/script>')</script>-->
+<script src="../js/jquery.imageuploader.js"></script>
+<script type="text/javascript">
+	// 页面加载
+	window.onload = function () {
+		$.ajax({
+			url:"../loadAdminShareServlet",
+			method:"get"
+		}).done(function(data){
+			objs = data
+			if(data.status==1){
+				xtip.msg(data.msg,{icon:'e',type:'w'});
+			}else if(data.status==0){
+				var shareList = data.obj;
+				for(var i = 0;i<shareList.length;i++){
+					var share = shareList[i];
+					var fileName = share.fileName.substring(4,share.fileName.length);
+					var fileNamePrefix = share.fileName.substring(0,4);
+					$("#tbody").append("<tr name='"+fileNamePrefix+"'><td class='user-name'>"+share.userName+"</td><td class='user-email'>"+fileName+"</td><td class='user-phone'></td><td class='user-mobile'>"+share.uploadTime+"</td></tr>");
+				}
+				// 为每项添加点击事件，根据前缀+文件名请求后端
+				$("#tbody tr").click(function(){
+					// 获取name属性值 即文件前缀
+					var prefix = this.getAttribute("name");
+					// 获取第二个td节点的文本 即文件名
+					var fileName = this.getElementsByTagName("td")[1].innerText;
+					var fileRealName = prefix+fileName;
+					console.log(fileRealName);
+					/*$.ajax({
+						url:"../downLoadFileServlet",
+						data:{"fileName":fileRealName},
+						method:"get"
+					}).done(function(data){
+						if(data.status == 0 ){
+
+						}else if(data.status == 1){
+							xtip.msg(data.msg,{icon:'e',type:'w'});
+						}
+					}).fail(function(){
+						xtip.msg("请求失败",{icon:'e',type:'w'});
+					})*/
+					window.location = "../downLoadFileServlet?fileName="+encodeURI(fileRealName);
+				});
+			}
+
+		}).fail(function(){
+			xtip.msg("请求失败",{icon:'e',type:'w'});
+		})
+	};
+	(function(){
+	        var options = {};
+	        $('.js-uploader__box').uploader({
+	            'selectButtonCopy':'请选择或拖拽文件',
+	            'instructionsCopy':'你可以选择或拖拽多个文件',
+	            'submitButtonCopy':'上传选择的文件',
+	            'furtherInstructionsCopy':'你可以选择或拖拽更多的文件',
+	            'secondarySelectButtonCopy':'选择更多的文件'
+	        });
+	    }());
+	// 表单提交
+	function submitToServlet(){
+		var files = $('#fileinput0').prop('files');
+		var data = new FormData();
+		for(var i=0;i<files.length;i++){
+			data.append('fileinput', files[i]);
+		}
+		$.ajax({
+			type: 'POST',
+			url: "../uploadAdminServlet",
+			data: data,
+			cache: false,
+			processData: false,
+			contentType: false
+		}).done(function(data){
+			if(data.status==0){
+				xtip.msg(data.msg,{icon:'s',type:'w'});
+			}else if(data.status==1){
+				xtip.msg(data.msg,{icon:'e',type:'w'});
+			}
+		});
+	}
+</script>

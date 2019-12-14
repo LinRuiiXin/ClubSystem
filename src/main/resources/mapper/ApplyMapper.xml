@@ -18,4 +18,10 @@
     <select id="queryCountByUserId" resultType="java.lang.Integer">
         select count(*) from apply where userId = #{userId}
     </select>
+    <select id="queryRemApplyByClubId" resultType="com.lx.POJO.Apply">
+        select * from apply where clubId = #{clubId} and status = 0 order by id desc
+    </select>
+    <select id="queryAdminIdByApplyId" resultType="java.lang.Integer">
+        select adminId from apply_buffer where applyId = #{applyId}
+    </select>
 </mapper>

@@ -24,5 +24,6 @@
         <mapper resource="mapper/WorkTimeMapper.xml"/>
         <mapper resource="mapper/TaskMapper.xml"/>
         <mapper resource="mapper/ClubMapper.xml"/>
+        <mapper resource="mapper/NoticeMapper.xml"/>
     </mappers>
 </configuration>

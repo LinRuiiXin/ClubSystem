@@ -1,0 +1,112 @@
+/* General styles */
+nav{
+    position: relative;
+    left: 970px;
+    top: -225px;
+	width: 8em;
+    margin: 0 0 0 3em;
+}
+
+.nav__item {
+	line-height: 1;
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 0;
+	color: currentColor;
+	border: 0;
+	background: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.nav__item:focus {
+	outline: none;
+}
+
+/*** Shamso ***/
+
+.nav--shamso .nav__item {
+	width: 2.25em;
+	height: 2.25em;
+}
+
+.nav--shamso .nav__item::before,
+.nav--shamso .nav__item::after {
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+}
+
+.nav--shamso .nav__item::before {
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	background: #7394aa;
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+	transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
+.nav--shamso .nav__item:not(.nav__item--current):focus::before,
+.nav--shamso .nav__item:not(.nav__item--current):hover::before {
+	-webkit-transform: scale3d(1.35,1.35,1);
+	transform: scale3d(1.35,1.35,1);
+}
+
+.nav--shamso .nav__item--current::before {
+	-webkit-transform: scale3d(0.35,0.35,1);
+	transform: scale3d(0.35,0.35,1);
+}
+
+.nav--shamso .nav__item::after {
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 80%;
+	opacity: 0;
+	box-shadow: inset 0 0 0 3px #5e798b;
+	-webkit-transform: scale3d(0.35,0.35,1);
+	transform: scale3d(0.35,0.35,1);
+	-webkit-transition: -webkit-transform 0.5s, box-shadow 0.5s, opacity 0.5s;
+	transition: transform 0.5s, box-shadow 0.5s, opacity 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+	transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
+.nav--shamso .nav__item--current::after {
+	opacity: 1;
+	box-shadow: inset 0 0 0 3px #c1dff9;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+}
+
+.nav--shamso .nav__item-title {
+	font-weight: bold;
+	line-height: 1.5;
+	display: block;
+	margin: 0 0 0 2.5em;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	color: #c1dff9;
+	-webkit-transform: scale3d(0.1,0.1,1);
+	transform: scale3d(0.1,0.1,1);
+	-webkit-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	-webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+	transition: opacity 0.5s, transform 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+	transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
+.nav--shamso .nav__item--current .nav__item-title {
+	opacity: 1;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+

@@ -8,6 +8,7 @@ import com.lx.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,5 +41,28 @@ public class ApplyServiceImpl implements ApplyService{
                 return true;
             }
         }
+    }
+    @Override
+    public List<Apply> queryRemApplyByClubIdAndAdminId(int clubId,int adminId){
+        List<Apply> applies = applyMapper.queryRemApplyByClubId(clubId);
+        List<Apply> remApply = new ArrayList<Apply>();
+        for(Apply apply:applies){
+            List<Integer> adminIds = applyMapper.queryAdminIdByApplyId(apply.getId());
+            if(adminIds == null){
+                remApply.add(apply);
+            }else{
+                boolean status = true;
+                for(int id:adminIds){
+                    if(id == adminId){
+                        status = false;
+                        break;
+                    }
+                }
+                if(status){
+                    remApply.add(apply);
+                }
+            }
+        }
+        return remApply;
     }
 }

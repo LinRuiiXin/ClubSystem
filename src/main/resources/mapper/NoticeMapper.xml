@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.mapper.NoticeMapper">
+    <select id="queryNoticeToday" resultType="java.lang.Integer">
+        select count(*) from notice where clubId = #{clubId} and releaseTime = #{today}
+    </select>
+    <select id="queryFirstThreeNotice" resultType="com.lx.POJO.Notice">
+        select * from notice where clubId = #{clubId} order by id desc limit 0,3
+    </select>
+</mapper>

@@ -33,9 +33,14 @@ public class LoginServlet extends HttpServlet {
             Result result = new Result(1,"账号或密码错误",null);
             JsonUtils.returnJson(resp,result);
         }else{
-            Result result = new Result(0,"成功",user);
-            req.getSession().setAttribute("User",user);
-            JsonUtils.returnJson(resp,result);
+            if(user.getStatus() == 0){
+                Result result = new Result(0,"成功",user);
+                req.getSession().setAttribute("User",user);
+                JsonUtils.returnJson(resp,result);
+            }else if(user.getStatus() == 1){
+                req.getSession().setAttribute("adminUser",user);
+                JsonUtils.returnJson(resp,new Result(0,"成功",user));
+            }
         }
     }
 }

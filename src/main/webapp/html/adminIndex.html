@@ -96,20 +96,20 @@
 		<!--				本月签到天数-->
 						<li class="progress-clockIn">
 							<span class="iconfont icon-naozhong" style="font-size: 35px; margin-left: 40px; color: #FFFFFF; position: relative;top: 37px; padding: 18px; background: #FDA423; border-radius: 50%"></span>
-							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">本月签到</p>
+							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">今日签到</p>
 							<p id="checkInCount" style="font-weight: bold; font-size: 33px; color: #54E4E7; width: 72px; text-align: center; margin-left: 127px; margin-top: 3px">0</p>
 						</li>
 		<!--				剩余任务数量-->
 						<li class="progress-task">
 							<span class="iconfont icon-renwu" style="font-size: 35px; margin-left: 40px; color: #FFFFFF; position: relative;top: 37px; padding: 18px; background: #4372E0; border-radius: 50%;"></span>
-							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">剩余任务</p>
+							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">今日公告</p>
 							<p id="RemTask" style="font-weight: bold; font-size: 33px; color: #54E4E7; width: 72px; text-align: center; margin-left: 127px; margin-top: 3px">0</p>
 						</li>
 		<!--				申请进度-->
 						<li class="progress-apply">
 							<span class="iconfont icon-lianjie" style="font-size: 35px; margin-left: 40px; color: #FFFFFF; position: relative;top: 37px; padding: 18px; background: #4EED88; border-radius: 50%"></span>
-							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">申请进度</p>
-							<p id="applyProgress" style="font-weight: bold; font-size: 33px; color: #54E4E7; width: 72px; text-align: center; margin-left: 127px; margin-top: 3px">0%</p>
+							<p style="font-weight: bold; font-size: 18px; color: #fff; margin-left: 127px; margin-top: -17px;">申请待办</p>
+							<p id="applyProgress" style="font-weight: bold; font-size: 33px; color: #54E4E7; width: 72px; text-align: center; margin-left: 127px; margin-top: 3px">0</p>
 						</li>
 		<!--				今日资源-->
 						<li class="progress-resources">
@@ -132,25 +132,26 @@
 						<div class="clockInRight">
 							<center>
 								<li><input type="button" class="clockIn-btn" value="打卡"></li>
-								<li><input type="button" class="change-btn" value="变更"></li>
+								<li><input type="button" class="change-btn" value="查看"></li>
 							</center>
 						</div>
 					</div>
-			<!--		资金申请表单-->
+			<!--		公告简略-->
 					<div class="applyForFunding">
-						<form class="applyForFunding-form" autocomplete="off">
-							<ul class="applyForFunding-ul1">
-								<li style="color: #fff; font-weight: bold; font-size: 20px; margin-bottom: 10px;">资金申请</li>
-								<li style="margin-top: 20px;" class="ul1-money"><input type="text" class="input-money" name="money" id="input-money" placeholder="请输入金额"/></li>
-								<li style="border-bottom: 1px dashed rgb(85, 85, 85); margin-top: 12px;"></li>
-								<li style="margin-top: 13px;" class="ul1-reason"><input type="text" class="input-reason" id="input-reason" name="reason" placeholder="请输入理由"/></li>
-							</ul>
-							<ul class="applyForFunding-ul2">
-								<li>
-										<input type="button" class="applySubmit" id="applySubmit" value="提交"/>
-								</li>
-							</ul>
-						</form>
+						<div style="width: 80%;height: 70%; margin:0 auto;position: relative; top: 34px;">
+								<ul>
+									<li id="notice_title1" style="color: #fff;font-weight:bold;font-size: 15px;">可是当年</li>
+									<li id="notice_msg1" style="color: #757575; width: 100%;overflow: hidden;height: 16px;margin-top: 3px;font-size: 13px;">卡利诺夫阿斯利康吗我看你脸色大啊是擦</li>
+								</ul>
+								<ul style="margin-top: 15px;">
+									<li id="notice_title2" style="color: #fff;font-weight:bold;font-size: 15px;">可是</li>
+									<li id="notice_msg2" style="color: #757575; width: 100%;overflow: hidden;height: 16px;margin-top: 3px;font-size: 13px;">卡利诺夫阿斯利康吗我看你脸色大啊是擦啊萨达擦打算夫人额和</li>
+								</ul>
+								<ul style="margin-top: 15px;">
+									<li id="notice_title3" style="color: #fff;font-weight:bold;font-size: 15px;">可是年</li>
+									<li id="notice_msg3" style="color: #757575; width: 100%;overflow: hidden;height: 16px;margin-top: 3px;font-size: 13px;">夫利康吗我看你脸色大啊是擦</li>
+								</ul>
+						</div>
 					</div>
 					
 		<!--			用户详细信息-->
@@ -385,25 +386,25 @@
 <script src="../js/main.js"></script> <!-- Resource jQuery -->
 <script src="../js/modernizr.js"></script> <!-- Modernizr -->
 <script type="text/javascript" src="../js/plugin.js"></script>
-<script type="text/javascript" src="../js/jump.js"></script>
+<script type="text/javascript" src="../js/adminJump.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		$.ajax({
-			url:"../loadIndexServlet",
+			url:"../loadAdminIndexServlet",
 			method:"get"
 		}).done(function(data){
 			if(data.status == 0){
 				var indexInfo = data.obj;
 				// 将数据渲染到主页
-				$("#checkInCount").text(indexInfo.checkInCount);
-				$("#RemTask").text(indexInfo.remTask);
-				$("#applyProgress").text(indexInfo.applyProgress);
-				$("#todayShare").text(indexInfo.todayShare);
-				$("#userInfo-RemTask").text(indexInfo.remTask);
+				$("#checkInCount").text(indexInfo.checkInToday);
+				$("#RemTask").text(indexInfo.todayNotice);
+				$("#applyProgress").text(indexInfo.applyToDo);
+				$("#todayShare").text(indexInfo.shareToday);
+				$("#userInfo-RemTask").text(indexInfo.taskCount);
 				$("#shareCount").text(indexInfo.shareCount);
-				$("#applyCount").text(indexInfo.applyCount);
+				$("#applyCount").text(indexInfo.applyToDo);
 				// 将资源文件渲染到主页
-				var shares = indexInfo.shares;
+				var shares = indexInfo.shareList;
 				for(var i = 0;i<shares.length;i++){
 					var share = shares[i];
 					var fileRealName = share.fileName;
@@ -420,6 +421,12 @@
 					$("#card"+(i+1)+"-fileName").attr("name",prefix);
 					$("#card"+(i+1)+"-btn").attr("href","../downLoadFileServlet?fileName="+fileRealName);
 				}
+				var notices = indexInfo.noticeList;
+				for(var i = 0;i<notices.length;i++){
+					var notice = notices[i];
+					$("#notice_title"+(i+1)).text(notice.title);
+					$("#notice_msg"+(i+1)).text(notice.message);
+				}
 			}else if(data.status == 1){
 				xtip.msg(data.msg,{icon:'e',type:'w'});
 			}
@@ -427,73 +434,6 @@
 			xtip.msg("请求失败",{icon:'e',type:'w'});
 		})
 	}
-	var isPass = false;
-	$("#input-money").blur(function(){
-		var money = $("#input-money").val();
-		console.log(money);
-		if(/^[0-9]{1,4}$/.test(money)){
-			$("#input-money").css("color","white");
-			isPass = true;
-		}else{
-			$("#input-money").css("color","red");
-			isPass = false;
-			xtip.msg("请输入四位以内的数",{icon:'e',type:'w'});
-		}
-	})
-	$("#input-reason").blur(function(){
-		var reason = $("#input-reason").val();
-		console.log(reason);
-		if(reason == null || reason == "" || reason.trim() == ""){
-			$("#input-reason").css("color","red");
-			isPass = false;
-			xtip.msg("请输入申请理由",{icon:'e',type:'w'});
-		}else{
-			$("#input-reason").css("color","white");
-			isPass = true;
-		}
-	})
-	function checkAll(){
-		var money = $("#input-money");
-		var reason = $("#input-reason");
-		if(money.val() == null || money.val() == "" || money.val().trim() == ""){
-			xtip.msg("请检查格式",{icon:'e',type:'w'});
-			isPass = false;
-		}
-		if(reason.val() == null || reason.val() == "" || reason.val().trim() == ""){
-			xtip.msg("请检查格式",{icon:'e',type:'w'});
-			isPass = false;
-		}
-		if(money.css('color') == "red"){
-			xtip.msg("请检查格式",{icon:'e',type:'w'});
-			isPass = false;
-		}
-		if(reason.css('color') == "red"){
-			xtip.msg("请检查格式",{icon:'e',type:'w'});
-			isPass = false;
-		}
-		if(isPass){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	$("#applySubmit").click(function(){
-		if(checkAll()){
-			$.ajax({
-				url:"../applyServlet",
-				data:{"money":$("#input-money").val(),"reason":$("#input-reason").val()}
-			}).done(function(data){
-				if(data.status == 0){
-					alert(data.msg);
-				}else if(data.status ==1){
-					xtip.msg(data.msg,{icon:'e',type:'w'});
-				}
-			}).fail(function(){
-				xtip.msg("请求失败",{icon:'e',type:'w'});
-			})
-		}
-	})
-
 //	clock
 	$(document).ready(function() {
     $('body').append('<div class="time">');

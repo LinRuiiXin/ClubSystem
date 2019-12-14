@@ -9,4 +9,7 @@
     <select id="queryCountByIdStEt" resultType="java.lang.Integer">
         select count(*) from work_time where userId = #{userId} and checkInTime between #{startDate} and #{endDate}
     </select>
+    <select id="queryCountCheckedToday" resultType="java.lang.Integer">
+        select count(*) from work_time where clubId = #{clubId} and checkInTime = #{today}
+    </select>
 </mapper>

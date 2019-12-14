@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 public interface ClubMapper {
+//    查询所有社团
     List<Club> queryAllClub();
 }

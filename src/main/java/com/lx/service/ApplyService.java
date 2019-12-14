@@ -8,4 +8,5 @@ public interface ApplyService {
     void insertApply(Apply apply);
     List<Apply> queryAllByUserId(int userId);
     boolean checkStatus(int userId);
+    List<Apply> queryRemApplyByClubIdAndAdminId(int clubId,int adminId);
 }

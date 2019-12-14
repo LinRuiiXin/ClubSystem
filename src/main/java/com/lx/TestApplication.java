@@ -1,11 +1,13 @@
 package com.lx;
 
 import com.alibaba.fastjson.JSON;
+import com.lx.POJO.Apply;
 import com.lx.POJO.IndexInfo;
 import com.lx.POJO.Share;
 import com.lx.POJO.User;
 import com.lx.mapper.ShareMapper;
 import com.lx.mapper.UserMapper;
+import com.lx.service.ApplyService;
 import com.lx.service.LoadIndexService;
 import com.lx.utils.DateUtil;
 import org.apache.ibatis.io.Resources;
@@ -120,5 +122,12 @@ public class TestApplication {
         user.setClubId(0);
         IndexInfo indexInfo = loadIndexService.getIndexInfo(user);
         System.out.println(indexInfo);
+    }
+    @Test
+    public void m12(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        ApplyService applyService = context.getBean(ApplyService.class);
+        List<Apply> applies = applyService.queryRemApplyByClubIdAndAdminId(1, 65);
+        System.out.println(applies);
     }
 }
