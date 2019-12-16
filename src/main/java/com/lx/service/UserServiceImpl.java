@@ -30,4 +30,16 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.queryUserByUserNameAndPsw(userName, password);
         return user;
     }
+
+    @Override
+    public String queryUserNameById(int id) {
+        String name = userMapper.queryUserNameById(id);
+        return name;
+    }
+
+    @Override
+    public int queryIdByUserName(String userName) {
+        int id = userMapper.queryIdByUserName(userName);
+        return id;
+    }
 }

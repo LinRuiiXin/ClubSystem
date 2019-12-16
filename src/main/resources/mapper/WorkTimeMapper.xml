@@ -18,4 +18,14 @@
     <select id="queryPastCheckInTreat" resultType="com.lx.POJO.WorkTime">
         select u.userName,w.checkInTime from user u,work_time w where w.userId = u.id and w.clubId = #{clubId} and w.checkInTime = #{checkInTime}
     </select>
+    <insert id="insertWorkTime" parameterType="com.lx.POJO.WorkTime">
+        insert into work_time(userId,checkInTime,clubId)
+        values (#{userId},now(),#{clubId})
+    </insert>
+    <delete id="deleteWorkTimeById">
+        delete from work_time where id = #{id}
+    </delete>
+    <select id="queryWorkTimeByStAndEt" resultType="java.util.Date">
+        select checkInTime from work_time where userId = #{userId} and checkInTime between #{startTime} and #{endTime}
+    </select>
 </mapper>

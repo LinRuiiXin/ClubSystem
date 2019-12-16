@@ -9,4 +9,20 @@
     <select id="queryFirstThreeNotice" resultType="com.lx.POJO.Notice">
         select * from notice where clubId = #{clubId} order by id desc limit 0,3
     </select>
+    <select id="queryAll" resultType="com.lx.POJO.Notice">
+        select * from notice
+    </select>
+    <select id="queryAllByClubId" resultType="com.lx.POJO.Notice">
+        select * from notice where clubId = #{clubId}
+    </select>
+    <select id="queryAllById" resultType="com.lx.POJO.Notice">
+        select * from notice where id = #{id}
+    </select>
+    <insert id="insertNotice" parameterType="com.lx.POJO.Notice">
+        insert into notice(title,message,releaseName,releaseTime,clubId)
+        values (#{title},#{message},#{releaseName},now(),#{clubId})
+    </insert>
+    <delete id="deleteNoticeById" parameterType="java.lang.Integer">
+        delete from notice where id = #{id}
+    </delete>
 </mapper>

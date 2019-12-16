@@ -17,5 +17,10 @@ public interface WorkTimeMapper {
     int queryCountCheckedToday(@Param("clubId") int clubId,@Param("today") String today);
 //    获取该社团几天内签到人数
     List<Integer> getCheckInCount(@Param("clubId") int clubId,@Param("startDate") String startDate,@Param("endDate") String endDate);
+//    查看签到情况
     List<WorkTime> queryPastCheckInTreat(@Param("clubId")int clubId,@Param("checkInTime")String checkInTime);
+
+    void insertWorkTime(WorkTime workTime);
+    void deleteWorkTimeById(int id);
+    List<Date> queryWorkTimeByStAndEt(@Param("userId") int userId, @Param("startTime") String startTime,@Param("endTime") String endTime);
 }

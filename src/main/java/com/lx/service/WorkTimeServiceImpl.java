@@ -64,5 +64,21 @@ public class WorkTimeServiceImpl implements WorkTimeService{
         List<String> list = userMapper.userNotCheckIn(clubId, checkInTime);
         return list;
     }
+    @Override
+    public void insertWorkTime(WorkTime workTime) {
+        workTimeMapper.insertWorkTime(workTime);
+    }
 
+    @Override
+    public List<Integer> queryWorkTimeByStAndEt(int userId, String startTime, String endTime) {
+        List<Date> dates = workTimeMapper.queryWorkTimeByStAndEt(userId, startTime, endTime);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<Integer> days = new ArrayList<Integer>();
+        for (Date date:dates){
+            String format = simpleDateFormat.format(date);
+            int day = Integer.valueOf(format.split("-")[2]);
+            days.add(day);
+        }
+        return days;
+    }
 }

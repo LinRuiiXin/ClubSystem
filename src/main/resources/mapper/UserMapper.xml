@@ -10,7 +10,7 @@
         insert into user(userName,password,sex,birthday,address,idCardNum,status,registerTime,clubId)
         values (#{userName},#{password},#{sex},#{birthday},#{address},#{idCardNum},#{status},now(),#{clubId});
     </insert>
-    <select id="isHasName" resultType="int">
+    <select id="isHasName" resultType="java.lang.Integer">
         select count(*) from user where userName = #{userName}
     </select>
     <select id="queryUserByUserNameAndPsw" resultType="User">
@@ -21,5 +21,11 @@
     </select>
     <select id="userNotCheckIn" resultType="java.lang.String">
         select userName from user where status = 0 and id not in(select userId from work_time where checkInTime = #{checkInTime})
+    </select>
+    <select id="queryUserNameById" resultType="java.lang.String">
+        select userName from user where id = #{id}
+    </select>
+    <select id="queryIdByUserName" resultType="java.lang.Integer">
+        select id from user where userName = #{userName}
     </select>
 </mapper>

@@ -20,4 +20,6 @@ public interface UserMapper {
     int queryAdminCount();
 //    查询当天未签到用户的姓名
     List<String> userNotCheckIn(@Param("clubId") int clubId,@Param("checkInTime") String checkInTime);
+    int queryIdByUserName(String userName);
+    String queryUserNameById(int id);
 }

@@ -9,4 +9,6 @@ public interface WorkTimeService {
     List<Integer> getCheckInCount15Days(int clubId);
     List<WorkTime> queryPastCheckInTreat(int clubId,int pastDay);
     List<String> userNotCheckIn(int clubId,int pastDay);
+    void insertWorkTime(WorkTime workTime);
+    List<Integer> queryWorkTimeByStAndEt(int userId,String startTime,String endTime);
 }

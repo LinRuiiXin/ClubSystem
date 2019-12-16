@@ -1,5 +1,7 @@
 package com.lx.POJO;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class Notice {
@@ -7,6 +9,7 @@ public class Notice {
     private String title;
     private String message;
     private String releaseName;
+    @JSONField(format = "yyyy-MM-dd")
     private Date releaseTime;
     private int clubId;
 

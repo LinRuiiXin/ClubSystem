@@ -1,4 +1,4 @@
-var locations = ["adminIndex.html", "adminCheckin.html", "adminTask.html", "adminShare.html", "adminApply.html", "adminNoticlist.html"];
+var locations = ["adminIndex.html", "adminCheckin.html", "adminTask.html", "adminShare.html", "adminApply.html", "adminNoticeList.html"];
 var index = document.getElementById("jump-index");
 var checkIn = document.getElementById("jump-checkIn");
 var task = document.getElementById("jump-task");

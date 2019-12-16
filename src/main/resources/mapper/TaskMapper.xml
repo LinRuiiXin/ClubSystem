@@ -9,4 +9,17 @@
     <select id="queryUserRemTask" resultType="java.lang.Integer">
         select count(*) from task where releaseName = #{releaseName} and status = 0
     </select>
+    <select id="queryAll" resultType="com.lx.POJO.Task">
+        select * from task
+    </select>
+    <select id="queryAllByUserId" resultType="com.lx.POJO.Task">
+        select * from task where userId = #{userId}
+    </select>
+    <update id="updateStatusById" parameterType="java.lang.Integer">
+        update task set status = 1 where id = #{id}
+    </update>
+    <insert id="insertTask" parameterType="com.lx.POJO.Task">
+        insert into task(title,message,releaseName,releaseTime,userId,status)
+        values (#{title},#{message},#{releaseName},now(),#{userId},0)
+    </insert>
 </mapper>

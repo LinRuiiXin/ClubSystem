@@ -6,4 +6,7 @@ public interface UserService {
     void insertUser(User user);
     boolean isHasName(String userName);
     User queryUserByUserNameAndPsw(String userName,String password);
+
+    String queryUserNameById(int id);
+    int queryIdByUserName(String userName);
 }

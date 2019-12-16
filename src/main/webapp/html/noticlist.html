@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../font/iconfont.css" />
     <link rel="stylesheet" href="../css/framework.css" />
     <script src="../js/vue.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
     <title>公告（前台列表）</title>
     <style>
         * {
@@ -37,34 +38,82 @@
         }
         
         .main {
-            width: 1280px;
+            width: 1000px;
             height: 550px;
             background: #333;
             box-shadow: 5px 5px 15px #161616;
             border-radius: 5px;
             position: relative;
-            top: 20px;
+            top: 50px;
             left: 30px;
             padding-top: 50px;
             margin: 0 auto;
         }
         
         .kuan {
-            width: 1280px;
+            width: 850px;
             height: 500px;
             overflow: hidden;
             overflow: auto;
+            position: absolute;
+            margin-left: 75px;
+        }
+        table.hovertable {
+            width: 100%;
+            margin-left: 0px;
+            margin-top: 0px;
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            border-width: 1px;
+            border-color: #999999;
+            border-collapse: collapse;
+            box-shadow: 5px 5px 15px #161616;
+        }
+
+        table.hovertable th {
+            padding: 12px;
+            background-color: rgb(82, 100, 199);
+            color: #fff;
+        }
+
+        table.hovertable tr {
+            background-color: #2d2d2d;
+        }
+
+        table.hovertable tr:hover {
+            background-color: rgb(94, 98, 122);
+        }
+
+        table.hovertable tr:nth-child(2n-1) {
+            background-color: #353535;
+        }
+
+        table.hovertable tr:nth-child(2n-1):hover {
+            background-color: rgb(94, 98, 122);
+        }
+
+        table.hovertable td {
+            text-align: center;
+            padding: 9px;
+            color: rgb(212, 212, 212);
+        }
+        #see{
+            width: 57px;
+            height: 20px;
+            color: #fff;
+            background-color: rgb(92, 218, 148);
+            border-radius: 5px;
+            border: none;
         }
         
-        #table table {
-            width: 85%;
+        /*#table table {
+            width: 100%;
             font-size: 14px;
-            margin: 0 auto;
             border: 1px solid #eee;
         }
         
         #table {
-            padding: 0 10px;
+            !*padding: 0 10px;*!
         }
         
         table thead th {
@@ -73,17 +122,17 @@
             text-align: left;
         }
         
-        table tbody {
+        !*table tbody {
             border-radius: 10px;
-        }
+        }*!
         
-        table tbody td {
+        table td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #eee;
             border-right: 1px solid #eee;
             background-color: #f5f5f5;
-        }
+        }*/
     </style>
 </head>
 
@@ -95,7 +144,7 @@
             <p class="header-username">林瑞鑫</p>
         </div>
         <div class="header-title">
-            <p class="title-content">社团管理系统</p>
+            <p class="title-content">员工管理系统</p>
         </div>
         <div class="header-right">
             <div class="right-email">
@@ -134,96 +183,107 @@
         <div class="main-out">
             <div class="main">
                 <div class="kuan">
-                    <div id="table">
-                        <table cellpadding="0" cellspacing="0">
+                        <table class="hovertable" id="noticetable" cellpadding="0" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>标题</th>
-                                    <th>发布人</th>
-                                    <th>发布时间</th>
-                                    <th>操作</th>
-                                </tr>
+                                <tr><th>序号</th><th>公告标题</th><th>发布人</th><th>发布时间</th><th>操作</th></tr>
                             </thead>
-                            <tbody>
-                                <tr v-for="(item,index) in newsList">
-                                    <td width="5%">{{index+1}}</td>
-                                    <td>{{item.title}}</td>
-                                    <td width="10%">{{item.user}}</td>
-                                    <td width="15%">{{item.dates}}</td>
-                                    <td width="10%"><a href="notic.html">查看</a></td>
-                                </tr>
-                            </tbody>
                         </table>
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
-<script>
-    var app = new Vue({
-        el: '#table',
-        data: {
-            addDetail: {},
-            editlist: false,
-            editDetail: {},
-            newsList: [{
-                title: '在移动设备开发',
-                user: '张若昀',
-                dates: '2018-02-09',
-                id: "45211546"
-            }, {
-                title: '图形及特效特性',
-                user: '张若昀',
-                dates: '2018-02-09',
-                id: "61341341"
-            }, {
-                title: '设备兼容特性',
-                user: '张若昀',
-                dates: '2018-02-09',
-                id: "62451431"
-            }, {
-                title: 'W3C将致力于开发用于实时通信',
-                user: '张若昀',
-                dates: '2018-02-09',
-                id: "62345213"
-            }, {
-                title: '全新的表单输入对象',
-                user: '张若昀',
-                dates: '2018-02-09',
-                id: "23322445"
-            }],
-            editid: ''
-        },
-        mounted() {
+<script type="text/javascript">
 
-            // },
-            // methods: {
+    //$("tr").css("outline","2px solid red");
+    window.onload = function () {
 
+        /*if(checkAll()){
+                $.ajax({
+                    url:"../loginServlet",
+                    data:{''},
+                    method:"post"
+                }).done(function(data){
+                    if(data.status == 0){
+                        alert(data.msg);
+                        location.href = "../html/index.html"
+                    }else if(data.status == 1){
+                        alert(data.msg);
+                    }
+                }).fail(function () {
+                    alert("请求失败")
+                })
+            }*/
 
-            //确认更新
-            // update() {
-            //     //编辑的话，也是传id去服务端
-            //     //axios.get('url',{ID:id}).then((res) =>{
-            //     //			加载列表				
-            //     //})
-            //     let _this = this
-            //     for (let i = 0; i < _this.newsList.length; i++) {
-            //         if (_this.newsList[i].id == this.editid) {
-            //             _this.newsList[i] = {
-            //                 title: _this.editDetail.title,
-            //                 user: _this.editDetail.user,
-            //                 dates: _this.editDetail.dates,
-            //                 id: this.editid
-            //             }
-            //             this.editlist = false
-            //         }
-            //     }
-            // }
+        var results = '';
+        $.ajax({
+            async: false, //设置同步
+            method: "get",
+            url: "../loadNoticeListServlet"
+        }).done(function (data) {
+            if (data.status == 0) {
+                results = data.obj;
+                for (var i = 0; i < results.length; i++) {
+                    notice = results[i];
+                    $("#noticetable").append("<tr><td>" + notice.id + "</td><td>" + notice.title + "</td><td>" + notice.releaseName + "</td><td>" + notice.releaseTime + "</td><td><button id='see'>" + "查看" + "</button></td></tr>")
+                }
+            } else if (data.status == 1) {
+                alert(data.msg);
+
+            }
+        })
+
+        /*var allResults = eval(results);
+        console.log(allResults);
+        var html = '<thead>'+'<tr>'+ '<th style="width:10%;">序号</th>'+ '<th>公告标题</th>'+ '<th style="width:10%;">发布人</th>'+ '<th style="width:15%;">发布时间</th>'+ '<th style="width:10%;">操作</th>';
+        for(var i=0;i<allResults.length;i++)
+        {//每一个for循环就是一行数据
+            html +=  '<tr>' + '<td>' + allResults[i].id + '</td>'+ '<td>' + allResults[i].title + '</td>'+'<td>' + allResults[i].releaseName + '</td>'+'<td>' + allResults[i].releaseTime + '</td>'+ '<td>' + '<a href="#" id="see">查看</a>' + '</td>';
+
         }
-    })
+        var myTable = document.getElementById("testtable");
+        myTable.innerHTML += html;
+*/
+        $("#noticetable").on("click", "#see", function () {
+            var noticeid = $(this).parent().siblings("td:eq(0)").text();
+            console.log(noticeid);
+            $.ajax({
+                url: "../checkNoticeServlet",
+                data: {'id': noticeid},
+                method: "post"
+            }).done(function (data) {
+                if (data.status == 0) {
+                    alert(data.msg);
+                    console.log("hhh");
+                    location.href = "../html/notic.html"
+                } else if (data.status == 1) {
+                    alert(data.msg);
+                }
+            })
+        });
+
+
+        /*$("#login").click(function(){
+        var noticeid = $(this).parent().siblings("td:eq(0)");
+        console.log(noticeid);*/
+        /*$.ajax({
+            url:"../loginServlet",
+            data:{'userName':userName.value,'password':password.value},
+            method:"post"
+        }).done(function(data){
+            if(data.status == 0){
+                alert(data.msg);
+                location.href = "../html/index.html"
+            }else if(data.status == 1){
+                alert(data.msg);
+            }
+        }).fail(function () {
+            alert("请求失败")
+        })*/
+        // })
+    }
 </script>
 <script type="text/javascript" src="../js/jump.js"></script>

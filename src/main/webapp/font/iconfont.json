@@ -27,6 +27,13 @@
       "unicode_decimal": 58943
     },
     {
+      "icon_id": "3009477",
+      "name": "打卡",
+      "font_class": "daqia",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "5111263",
       "name": "头像-空",
       "font_class": "touxiang-kong",
@@ -41,6 +48,13 @@
       "unicode_decimal": 60229
     },
     {
+      "icon_id": "5628580",
+      "name": "打卡时间表",
+      "font_class": "daqiashijianbiao",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
       "icon_id": "6332156",
       "name": "申请",
       "font_class": "shenqing",
@@ -53,6 +67,13 @@
       "font_class": "lianjie",
       "unicode": "e626",
       "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "7870065",
+      "name": "返回",
+      "font_class": "fanhui",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
     },
     {
       "icon_id": "10809380",

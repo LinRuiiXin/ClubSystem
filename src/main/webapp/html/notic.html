@@ -36,24 +36,25 @@
         }
         
         .main {
-            width: 1280px;
-            height: 550px;
+            width: 900px;
+            height: 540px;
             background: #333;
             box-shadow: 5px 5px 15px #161616;
             border-radius: 5px;
             position: relative;
-            top: 20px;
-            left: 200px;
+            /*top: 20px;*/
+            /*left: 200px;*/
             padding-top: 50px;
             margin: 0 auto;
+            margin-top: 50px;
         }
         
         .return {
             width: 50px;
             height: 50px;
             position: absolute;
-            left: 60px;
-            top: 20px;
+            left: 40px;
+            top: 40px;
         }
         
         .return a {
@@ -66,7 +67,7 @@
         }
         
         .gonggaoname {
-            width: 30%;
+            width: 20%;
             height: 50px;
             text-align: center;
             margin: 0 auto;
@@ -77,9 +78,9 @@
         }
         
         .date {
-            width: 160px;
+            width: 150px;
             height: 40px;
-            margin-left: 1000px;
+            margin-left: 760px;
         }
         
         .date h3 {
@@ -87,8 +88,8 @@
         }
         
         .gonggaocontent {
-            width: 1009px;
-            height: 405px;
+            width: 784px;
+            height: 395px;
             background-color: rgb(65, 58, 73);
             margin: 0 auto;
             /* line-height: 35px;*/
@@ -98,6 +99,7 @@
             border-radius: 10px;
             padding-top: 25px;
             padding-right: 15px;
+            padding-left: 25px;
         }
         
         .gonggaocontent p {
@@ -116,7 +118,7 @@
             <p class="header-username">林瑞鑫</p>
         </div>
         <div class="header-title">
-            <p class="title-content">社团管理系统</p>
+            <p class="title-content">员工管理系统</p>
         </div>
         <div class="header-right">
             <div class="right-email">
@@ -152,21 +154,48 @@
             </ul>
         </div>
         <!-- 主体内容 -->
+        <div class="main-out">
         <div class="main">
             <div class="return">
-                <a href="#"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
+                <a href="../html/noticlist.html"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
             </div>
             <div class="gonggaoname">
-                <h1>公告1</h1>
+                <h1 id="noticetitle"></h1>
             </div>
             <div class="date">
-                <h3>2019.12.1</h3>
+                <h3 id="releaseTime"></h3>
             </div>
             <div class="gonggaocontent">
-                <p>公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容</p>
+                <p id="noticemessage"></p>
             </div>
         </div>
+        </div>
+    </div>
 </body>
 
 </html>
 <script type="text/javascript" src="../js/jump.js"></script>
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    window.onload=function() {
+        $.ajax({
+            async : false, //设置同步
+            method:"post",
+            url:"../loadNoticeServlet"
+        }).done(function (data) {
+            if(data.status == 0){
+                alert(data.msg);
+                var results = data.obj;
+                console.log(results);
+                $('#noticetitle').text(results[0].title);
+                console.log(results[0].title);
+                $('#releaseTime').text(results[0].releaseTime);
+                console.log(results[0].releaseTime);
+                $('#noticemessage').text(results[0].message);
+                console.log(results[0].message);
+            }else if(data.status == 1){
+                alert(data.msg);
+            }
+        })
+    }
+</script>

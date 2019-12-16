@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../font/iconfont.css" />
+    <link rel="stylesheet" href="../css/framework.css" />
+    <script src="../js/xtiper.min.js" type="text/javascript"></script>
+    <link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+    <script src="../js/jquery-3.4.1.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="#" />
+    <title>公告（后台管理）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            background: #4F4F4F;
+            min-width: 530px;
+            /* 可以往上调，根据需求改，最小555px */
+            min-height: 1200px;
+        }
+        
+        .main {
+            width: 900px;
+            height: 540px;
+            background: #333;
+            box-shadow: 5px 5px 15px #161616;
+            border-radius: 5px;
+            position: relative;
+            /*top: 20px;*/
+            /*left: 200px;*/
+            padding-top: 50px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        
+        /*.return {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 40px;
+            top: 40px;
+        }
+        
+        .return a {
+            color: #bb86fc;
+            font-size: 50px;
+        }
+        
+        .return a:hover {
+            color: #fff;
+        }*/
+        
+        .taskname {
+            float: left;
+            margin-left: 30px;
+            width: 20%;
+            height: 50px;
+        }
+        
+        .text-name {
+            width: 180px;
+            height: 30px;
+            background-color: #333;
+            border: 0;
+            margin-left: -80px;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        .to-name {
+            width: 120px;
+            height: 30px;
+            background-color: #333;
+            border: 0;
+            margin-left: 80px;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        
+        /*.date {
+            width: 160px;
+            height: 40px;
+            margin-left: 1000px;
+        }
+        
+        .date h3 {
+            color: #fff;
+            margin-left: -300px;
+        }*/
+        
+        .taskcontent {
+            width: 800px;
+            height: 380px;
+            background-color: rgb(65, 58, 73);
+            margin: 0 auto;
+            line-height: 35px;
+            letter-spacing: 1px;
+            text-indent: 2em;
+            box-shadow: 2px 2px 15px rgb(37, 37, 37);
+            border-radius: 5px;
+            padding-top: 40px;
+            margin-top: 60px;
+        }
+        
+        .taskcontent .text-content {
+            width: 600px;
+            height: 180px;
+            background-color: #333;
+            border: 0;
+            margin-left: 98px;
+            color: #fff;
+            resize: none;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        .taskcontent p.taskname {
+            color: #fff;
+            margin-left: 65px;
+        }
+        .taskcontent p.toName {
+            color: #fff;
+            margin-left: 65px;
+            position: absolute;
+            top: 150px;
+            left: 360px;
+        }
+        
+        .taskcontent p.taskmsg {
+            color: #fff;
+            margin-left: 65px;
+            width: 200px;
+            height: 40px;
+        }
+        
+        .tijiao {
+            width: 80px;
+            height: 25px;
+            border: 0;
+            background-color: #bb86fc;
+            color: #fff;
+            margin-left: 460px;
+            position: absolute;
+            left: 245px;
+            top: 155px;
+        }
+        
+        .left-gonggao {
+            background: #384BB7;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="portrait">
+            <span class="iconfont icon-touxiang-kong" style="display: block; color: #fff;text-align: center; width: 100%;height: 70%; font-size: 55px; float: left;"></span>
+            <p class="header-username">林瑞鑫</p>
+        </div>
+        <div class="header-title">
+            <p class="title-content">员工管理系统</p>
+        </div>
+        <div class="header-right">
+            <div class="right-email">
+                <span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-" style="display: block;font-size: 30px; color: #fff;text-align: center;margin-top: 24px;"></span>
+                <div class="email-menu">
+                    <ul class="email-ul">
+                        <li>任务</li>
+                        <li>申请</li>
+                        <li>公告</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-logout">
+                <div class="logout-content">
+                    <p class="font-logout">退出</p>
+                    <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="content">
+        <!-- 左侧导航 -->
+        <div class="nav">
+            <ul class="nav-ul">
+                <li id="jump-index" class="jump">首页</li>
+                <li id="jump-checkIn" class="jump">打卡</li>
+                <li id="jump-task" class="jump">任务</li>
+                <li id="jump-share" class="jump">资源分享</li>
+                <li id="jump-apply" class="jump">申请</li>
+                <li id="jump-notic" class="jump">公告</li>
+            </ul>
+        </div>
+        <!-- 主体内容 -->
+        <div class="main-out">
+            <div class="main">
+                <!--<div class="return">
+                    <a href="#"><span class="iconfont icon-fanhui" style="font-size: 40px;"></span></a>
+                </div>-->
+                <div class="taskcontent">
+                    <form onsubmit="return checkAll()">
+                        <p class="taskname">任务标题：</p>
+                        <input type="text" class="text-name" id="text-name">
+                        <p class="toName">发给：</p>
+                        <input type="text" class="to-name" id="to-name">
+                        <input type="button" class="tijiao" value="提交" id="tijiao">
+                        <p class="taskmsg">任务内容：</p>
+                        <textarea cols="30" class="text-content" id="text-content"></textarea>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../js/adminJump.js"></script>
+<script type="text/javascript">
+    var isPass = false;
+    var textname = document.getElementById('text-name');
+    var textcontent = document.getElementById('text-content');
+    var toname = document.getElementById('to-name');
+
+    function checkAll() {
+        isPass = true;
+        console.log(22222);
+        if (textname.value == null || textname.value == "" || textname.value.trim() == "") {
+            isPass = false;
+            console.log("标题为空");
+        }
+        if (textcontent.value == null || textcontent.value == "" || textcontent.value.trim() == "") {
+            isPass = false;
+            console.log("内容为空");
+        }
+        if (toname.value == null || toname.value == "" || toname.value.trim() == "") {
+            isPass = false;
+            console.log("收任务人为空");
+        }
+        if (isPass) {
+            console.log(3333);
+            return isPass;
+        } else {
+            console.log(1111);
+            xtip.msg("请检查格式", {
+                icon: 'e',
+                type: 'w'
+            });
+            return isPass;
+        }
+    }$("#tijiao").click(function(){
+        alert(checkAll());
+        if(checkAll()){
+            $.ajax({
+                url:"../insertTaskServlet",
+                data:{'title':textname.value,'message':textcontent.value,'releaseName':toname.value},
+                method:"post"
+            }).done(function(data){
+                if(data.status == 0){
+                    alert(data.msg);
+                }else if(data.status == 1){
+                    alert(data.msg);
+                }
+            }).fail(function () {
+                alert("请求失败")
+            })
+        }
+    })
+</script>

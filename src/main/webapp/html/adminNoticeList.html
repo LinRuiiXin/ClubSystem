@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>任务（前台）</title>
-    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="../js/vue.min.js"></script>
     <link rel="stylesheet" href="../font/iconfont.css" />
     <link rel="stylesheet" href="../css/framework.css" />
+    <script src="../js/vue.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-3.4.1.js" type="text/javascript"></script>
+    <title>公告（后台列表）</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             list-style: none;
+            text-decoration: none;
         }
         
         html {
@@ -28,40 +29,43 @@
             background: #4F4F4F;
             min-width: 530px;
             /* 可以往上调，根据需求改，最小555px */
-            min-height: 1000px;
+            min-height: 1200px;
         }
         
-        .left-renwu {
+        .left-gonggao {
             background: #384BB7;
             color: #fff;
         }
-        /*main*/
         
         .main {
-            width: 1100px;
-            margin: 0 auto;
-            height: 600px;
+            width: 1200px;
+            height: 550px;
             background: #333;
             box-shadow: 5px 5px 15px #161616;
             border-radius: 5px;
-            margin-top: 50px;
-            /* position: absolute; */
-            /* top: 100px;
-            left: 200px; */
+            position: relative;
+            top: 20px;
+            left: 30px;
+            padding-top: 50px;
+            margin: 0 auto;
         }
         
         .kuan {
-            margin-top: 50px;
-            margin-left: 50px;
-            position: absolute;
-            width: 1000px;
+            width: 1100px;
+            height: 500px;
+
+        }
+        .kuan #table{
+            width: 80%;
             height: 500px;
             overflow: hidden;
             overflow: auto;
+            margin-left: 60px;
         }
+        
         table.hovertable {
             width: 100%;
-            margin-left: 0px;
+            /*margin-left: 60px;*/
             margin-top: 0px;
             font-family: verdana, arial, sans-serif;
             font-size: 11px;
@@ -70,52 +74,43 @@
             border-collapse: collapse;
             box-shadow: 5px 5px 15px #161616;
         }
-
+        
         table.hovertable th {
             padding: 12px;
             background-color: rgb(82, 100, 199);
             color: #fff;
         }
-
+        
         table.hovertable tr {
             background-color: #2d2d2d;
         }
-
+        
         table.hovertable tr:hover {
             background-color: rgb(94, 98, 122);
         }
-
+        
         table.hovertable tr:nth-child(2n-1) {
             background-color: #353535;
         }
-
+        
         table.hovertable tr:nth-child(2n-1):hover {
             background-color: rgb(94, 98, 122);
         }
-
+        
         table.hovertable td {
             text-align: center;
             padding: 9px;
             color: rgb(212, 212, 212);
         }
-        #finish{
-            width: 57px;
-            height: 20px;
-            color: #fff;
-            background-color: rgb(92, 218, 148);
-            border-radius: 5px;
-            border: none;
-        }
-        /*#table table {
-            !*margin-top: 50px;
-            margin-left: 62px;*!
-            width: 100%;
+        /* #table table {
+            width: 85%;
             font-size: 14px;
             border: 1px solid #eee;
+            margin-left: 40px;
         }
         
         #table {
-            !*padding: 0 10px;*!
+            padding: 0 10px;
         }
         
         table thead th {
@@ -124,37 +119,43 @@
             text-align: left;
         }
         
-        !*table tbody {
+        table tbody {
             border-radius: 10px;
-        }*!
+        }
         
-        table td {
+        table tbody td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #eee;
             border-right: 1px solid #eee;
             background-color: #f5f5f5;
-        }
+        } */
         
-        !*table tbody td span {
-            margin: 0 10px;
-            cursor: pointer;
-        }*!
-        
-        input {
-            border: 1px solid #ccc;
-            padding: 5px;
-            border-radius: 3px;
-            margin-right: 15px;
-        }
-        
-        button {
-            background: #008cd5;
-            border: 0;
-            padding: 4px 15px;
-            border-radius: 3px;
+        .main-out .main .kuan .button a button {
+            width: 100px;
+            height: 50px;
+            background-color: #bb86fc;
             color: #fff;
-        }*/
+            border: 0;
+            position: relative;
+            top: -500px;
+            left: 1000px;
+            border-radius: 10px;
+            margin: 0 auto;
+            transition: 1s;
+        }
+        
+        .main-out .main .kuan .button a button:hover {
+            box-shadow: 0 0 5px #f5f5f5;
+        }
+        .delete{
+            width: 57px;
+            height: 20px;
+            color: #fff;
+            background-color: rgb(92, 218, 148);
+            border-radius: 5px;
+            border: none;
+        }
     </style>
 </head>
 
@@ -192,7 +193,6 @@
         <!-- 左侧导航 -->
         <div class="nav">
             <ul class="nav-ul">
-
                 <li id="jump-index" class="jump">首页</li>
                 <li id="jump-checkIn" class="jump">打卡</li>
                 <li id="jump-task" class="jump">任务</li>
@@ -205,86 +205,69 @@
         <div class="main-out">
             <div class="main">
                 <div class="kuan">
-                    <div id="table">
 
-                        <table class="hovertable" id="tasktable" cellpadding="0" cellspacing="0">
+                    <div id="table">
+                        <table class="hovertable" id="noticetable" cellpadding="0" cellspacing="0">
                             <thead>
-                                <tr><th>序号</th><th>任务标题</th><th>任务内容</th><th>发布人</th><th>发布时间</th><th>任务状态</th><th>操作</th></tr>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>标题</th>
+                                    <th>发布人</th>
+                                    <th>发布时间</th>
+                                    <th>操作</th>
+                                </tr>
                             </thead>
                         </table>
 
                     </div>
+                    <div class="button">
+                        <a href="../html/noticAdmin.html"><button>添加公告</button></a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 </body>
 
 </html>
-<script type="text/javascript" src="../js/jump.js"></script>
-<script type="text/javascript">
-   window.onload = function () {
+<script type="text/javascript" src="../js/adminJump.js"></script>
+<script>
+    window.onload = function () {
         var results = '';
         $.ajax({
-            async: false, //设置同步
-            method: "get",
-            url: "../loadTaskServlet"
+            async : false, //设置同步
+            method:"get",
+            url:"../loadNoticeListServlet"
         }).done(function (data) {
-            if (data.status == 0) {
+            if(data.status == 0){
                 results = data.obj;
                 for (var i = 0;i<results.length;i++){
-                    var status;
-                    task = results[i];
-                    if(task.status==0){
-                        status="未完成";
-                    }else if(task.status==1){
-                        status="已完成";
-                    }
-                    $("#tasktable").append("<tr><td>"+task.id+"</td><td>"+task.title+"</td><td>"+task.message+"</td><td>"+task.releaseName+"</td><td>"+task.releaseTime+"</td><td>"+status+"</td><td><button id='finish' class='finish'>"+"完成"+"</button></td></tr>")
+                    notice = results[i];
+                    $("#noticetable").append("<tr><td>"+notice.id+"</td><td>"+notice.title+"</td><td>"+notice.releaseName+"</td><td>"+notice.releaseTime+"</td><td><button id='btn' class='delete'>"+"删除"+"</button></td></tr>")
                 }
-            } else if (data.status == 1) {
+            }else if(data.status == 1){
                 alert(data.msg);
             }
         })
-        /*var allResults = eval(results);
-        console.log(allResults);
-        var html = '<thead>' + '<tr>' + '<th style="width:5%;">序号</th>' + '<th style="width:10%;">任务标题</th>' + '<th style="width:40%;">内容</th>' + '<th style="width:10%;">发布人</th>' + '<th style="width:10%;">发布时间</th>' + '<th style="width:10%;">状态</th>' + '<th style="width:10%;">操作</th>';
-        for (var i = 0; i < allResults.length; i++) {//每一个for循环就是一行数据
-            var status;
-            var task = allResults[i];
-            if(task.status==0){
-                status = "未完成";
-            }else if(task.status == 1){
-                status = "已完成";
-            }
-            html += '<tbody>' + '<tr>' + '<td>' + allResults[i].id + '</td>' + '<td>' + allResults[i].title + '</td>' + '<td>' + allResults[i].message + '</td>' + '<td>' + allResults[i].releaseName + '</td>' + '<td>' + allResults[i].releaseTime + '</td>' + '<td id="statusstr">' + status + '</td>' + '<td>' + '<button>完成</button>' + '</td>';
-
-        }
-        var myTable = document.getElementById("tasktable");
-        myTable.innerHTML += html;*/
-       $(document).on('click', '.finish', function(){
-           alert("hhh");
-           //判断是否已完成
-           var taskstatus = $(this).parent().siblings("td:eq(5)").text();
-           var taskid = $(this).parent().siblings("td:eq(0)").text();
-           var status;
-           if (taskstatus=="未完成"){
-               $(this).parent().siblings("td:eq(5)").text("已完成");
-               $.ajax({
-                   async: false, //设置同步
-                   method: "post",
-                   data:{'id':taskid},
-                   url: "../taskStatusServlet"
-               }).done(function (data) {
-                   if (data.status==0){
-                       alert(data.msg);
-                   }else if (data.status==1){
-                       alert(data.msg);
-                   }
-               })
-           }
-
-       })
-  }
-
+        $(document).on('click','.delete',function() {
+            $(this).parent().siblings("td").each(function() { //获取当前行
+                $(this).parent().remove(); //移除该行
+            })
+            var noticeid = $(this).parent().siblings("td:eq(0)").text();
+            $.ajax({
+                url:"../deleteNoticeServlet",
+                data:{'id':noticeid},
+                method:"post"
+            }).done(function(data){
+                if(data.status == 0){
+                    alert(data.msg);
+                }else if(data.status == 1){
+                    alert(data.msg);
+                }
+            }).fail(function () {
+                alert("请求失败")
+            })
+        })
+    }
 </script>
