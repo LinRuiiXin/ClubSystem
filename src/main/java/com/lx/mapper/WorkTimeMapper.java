@@ -1,5 +1,6 @@
 package com.lx.mapper;
 
+import com.lx.POJO.WorkTime;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,7 @@ public interface WorkTimeMapper {
     int queryCountByIdStEt(@Param("userId") int userId,@Param("startDate") String startDate,@Param("endDate") String endDate);
 //    获取今日社团内已签到人数
     int queryCountCheckedToday(@Param("clubId") int clubId,@Param("today") String today);
+//    获取该社团几天内签到人数
+    List<Integer> getCheckInCount(@Param("clubId") int clubId,@Param("startDate") String startDate,@Param("endDate") String endDate);
+    List<WorkTime> queryPastCheckInTreat(@Param("clubId")int clubId,@Param("checkInTime")String checkInTime);
 }

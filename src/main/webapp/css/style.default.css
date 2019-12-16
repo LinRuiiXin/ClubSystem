@@ -1,0 +1,70 @@
+/*
+* ==========================================================
+*     DASHBOARD HEADER SECTION
+* ==========================================================
+*/
+.statistic {
+  padding: 20px 15px;
+  margin-bottom: 15px;
+}
+
+.statistic:last-of-type {
+  margin-bottom: 0;
+}
+
+.statistic strong {
+  font-size: 1.5em;
+  color: #333;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistic small {
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.statistic .icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  min-width: 40px;
+  max-width: 40px;
+  color: #fff;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.chart .title {
+  padding: 15px 0 0 15px;
+}
+
+.chart .title strong {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.chart .title small {
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.chart .line-chart {
+  width: 100%;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.chart .line-chart canvas {
+  /* width: calc(100% - 30px) !important; */
+}
+
+.chart .bar-chart {
+  margin-bottom: 15px;
+}
+
+.chart .bar-chart canvas {
+  width: 100%;
+  margin: 0;
+}

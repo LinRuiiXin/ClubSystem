@@ -1,14 +1,13 @@
 package com.lx;
 
 import com.alibaba.fastjson.JSON;
-import com.lx.POJO.Apply;
-import com.lx.POJO.IndexInfo;
-import com.lx.POJO.Share;
-import com.lx.POJO.User;
+import com.lx.POJO.*;
 import com.lx.mapper.ShareMapper;
 import com.lx.mapper.UserMapper;
+import com.lx.mapper.WorkTimeMapper;
 import com.lx.service.ApplyService;
 import com.lx.service.LoadIndexService;
+import com.lx.service.WorkTimeService;
 import com.lx.utils.DateUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -129,5 +128,26 @@ public class TestApplication {
         ApplyService applyService = context.getBean(ApplyService.class);
         List<Apply> applies = applyService.queryRemApplyByClubIdAndAdminId(1, 65);
         System.out.println(applies);
+    }
+    @Test
+    public void m13(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        WorkTimeMapper bean = context.getBean(WorkTimeMapper.class);
+        List<Integer> checkInCount = bean.getCheckInCount(0, "2018-1-1", "2020-1-1");
+        System.out.println(checkInCount);
+    }
+    @Test
+    public void m14(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        WorkTimeService bean = context.getBean(WorkTimeService.class);
+        List<Integer> checkInCount15Days = bean.getCheckInCount15Days(0);
+        System.out.println(checkInCount15Days);
+    }
+    @Test
+    public void m15(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
+        WorkTimeMapper bean = context.getBean(WorkTimeMapper.class);
+        List<WorkTime> workTimes = bean.queryPastCheckInTreat(0, "2019-12-16");
+        System.out.println(workTimes);
     }
 }

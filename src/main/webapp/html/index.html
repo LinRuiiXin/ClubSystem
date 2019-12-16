@@ -484,7 +484,7 @@
 				data:{"money":$("#input-money").val(),"reason":$("#input-reason").val()}
 			}).done(function(data){
 				if(data.status == 0){
-					alert(data.msg);
+					xtip.msg(data.msg,{icon:'s',type:'w'});
 				}else if(data.status ==1){
 					xtip.msg(data.msg,{icon:'e',type:'w'});
 				}

@@ -4,7 +4,6 @@ import com.lx.POJO.Apply;
 import com.lx.mapper.ApplyMapper;
 import com.lx.mapper.UserMapper;
 import com.lx.utils.ApplyProgressUtil;
-import com.lx.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,4 +64,42 @@ public class ApplyServiceImpl implements ApplyService{
         }
         return remApply;
     }
+
+    @Override
+    public void rejectApply(int applyId) {
+        applyMapper.rejectApply(applyId);
+        applyMapper.deleteDateInBuffer(applyId);
+    }
+
+    @Override
+    public boolean isLastOne(int applyId) {
+        int countByApplyIdInBuffer = applyMapper.getCountByApplyIdInBuffer(applyId);
+        int adminCount = userMapper.queryAdminCount();
+        if(countByApplyIdInBuffer == adminCount-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public void handleLastApply(int applyId) {
+        applyMapper.deleteDateInBuffer(applyId);
+        applyMapper.agreeApply(applyId);
+    }
+
+    @Override
+    public void insertToApplyBuffer(int applyId, int adminId) {
+        applyMapper.insertToApplyBuffer(applyId,adminId);
+    }
+
+    @Override
+    public List<Apply> turnPage(int clubId, int page) {
+        int start = (page-1)*6;
+        int end = page*6;
+        List<Apply> applies = applyMapper.queryApplyBySAndE(clubId, start, end);
+        List<Apply> applyList = ApplyProgressUtil.getProgress(applies);
+        return applyList;
+    }
+
 }

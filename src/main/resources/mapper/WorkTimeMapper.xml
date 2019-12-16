@@ -12,4 +12,10 @@
     <select id="queryCountCheckedToday" resultType="java.lang.Integer">
         select count(*) from work_time where clubId = #{clubId} and checkInTime = #{today}
     </select>
+    <select id="getCheckInCount" resultType="java.lang.Integer">
+        select count(*) from work_time where clubId = #{clubId} and checkInTime between #{startDate} and #{endDate} group by checkInTime
+    </select>
+    <select id="queryPastCheckInTreat" resultType="com.lx.POJO.WorkTime">
+        select u.userName,w.checkInTime from user u,work_time w where w.userId = u.id and w.clubId = #{clubId} and w.checkInTime = #{checkInTime}
+    </select>
 </mapper>

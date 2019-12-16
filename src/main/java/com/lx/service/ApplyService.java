@@ -9,4 +9,9 @@ public interface ApplyService {
     List<Apply> queryAllByUserId(int userId);
     boolean checkStatus(int userId);
     List<Apply> queryRemApplyByClubIdAndAdminId(int clubId,int adminId);
+    void rejectApply(int applyId);
+    boolean isLastOne(int applyId);
+    void handleLastApply(int applyId);
+    void insertToApplyBuffer(int applyId,int adminId);
+    List<Apply> turnPage(int clubId,int page);
 }

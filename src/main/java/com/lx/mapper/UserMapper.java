@@ -18,4 +18,6 @@ public interface UserMapper {
     User queryUserByUserNameAndPsw(@Param("userName") String userName, @Param("password") String password);
 //    查询管理员数量
     int queryAdminCount();
+//    查询当天未签到用户的姓名
+    List<String> userNotCheckIn(@Param("clubId") int clubId,@Param("checkInTime") String checkInTime);
 }

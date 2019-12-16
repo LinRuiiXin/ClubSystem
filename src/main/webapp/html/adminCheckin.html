@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>打卡（前台）</title>
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/framework.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
+<!--    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />-->
+<!--    <link rel="stylesheet" type="text/css" href="../css/demo.css" />-->
+    <link rel="stylesheet" type="text/css" href="../css/component.css" />
+    <!-- 弹窗 -->
+    <link href="../css/xtiper.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="#"/>
+    <script src="../js/xtiper.min.js" type="text/javascript"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            background: #4F4F4F;
+            min-width: 530px;
+            /* 可以往上调，根据需求改，最小555px */
+            min-height: 1200px;
+        }
+        /*		全局*/
+        /*main样式*/
+        
+        .main{
+			width: 1189px;
+			display:block;
+			left: 160px;
+			height: 750px;
+			margin: 0 auto;
+		}
+        td,th{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="portrait">
+            <span class="iconfont icon-touxiang-kong" style="display: block; color: #fff;text-align: center; width: 100%;height: 70%; font-size: 55px; float: left;"></span>
+            <p class="header-username">林瑞鑫</p>
+        </div>
+        <div class="header-title">
+            <p class="title-content">员工管理系统</p>
+        </div>
+        <div class="header-right">
+            <div class="right-email">
+                <span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-" style="display: block;font-size: 30px; color: #fff;text-align: center;margin-top: 24px;"></span>
+                <div class="email-menu">
+                    <ul class="email-ul">
+                        <li>任务</li>
+                        <li>申请</li>
+                        <li>公告</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-logout">
+                <div class="logout-content">
+                    <p class="font-logout">退出</p>
+                    <span class="iconfont icon-dengchu" style=" width: 47px; float:right; font-size: 30px; padding-top: 3px;padding-bottom: 4px;color: #fff;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="content">
+        <!-- 左侧导航 -->
+        <div class="nav">
+            <ul class="nav-ul">
+                <li id="jump-index" class="jump">首页</li>
+                <li id="jump-checkIn" class="jump">打卡</li>
+                <li id="jump-task" class="jump">任务</li>
+                <li id="jump-share" class="jump">资源分享</li>
+                <li id="jump-apply" class="jump">申请</li>
+                <li id="jump-notic" class="jump">公告</li>
+            </ul>
+        </div>
+        <!-- 主体内容 -->
+        <div class="main-out">
+            <div class="main">
+                <div class="chart col-lg-6 col-1" style="margin: 0 auto;border: none;width: 63.1%;height: 380px;margin-top: 40px;margin-left:200px">
+                    <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow" style="box-shadow: 5px 5px 15px #161616;background:#333;padding: 20px;border-radius: 5px;">
+                      <canvas style="background: #333;border-radius: 5px;" id="lineCahrt"></canvas>
+                    </div>
+                </div>
+                <div class="applypool">
+                    <table style="position: relative;">
+                        <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>状态</th>
+                            <th>签到时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+<!--                        <tr id="line1"><td class="user-name">gary coleman</td><td class="user-phone">(398)-332-5385</td><td class="user-mobile">(888)-677-3719</td></tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../js/jquery-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/adminJump.js"></script>
+<script src="../js/Chart.min.js"></script>
+<script src="../js/charts-home.js"></script>
+<script src="../js/jquery.stickyheader.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        $.ajax({
+            url:"../loadPastCheckInTreat",
+            data:{"past":0},
+            method:"post"
+        }).done(function(data){
+            if(data.status == 0){
+                var checked = data.obj.checkedWorkTimes;
+                console.log(checked);
+                var notChecked = data.obj.notCheckInList;
+                console.log(notChecked);
+                for(var i = 0;i<checked.length;i++){
+                    var check = checked[i];
+                    $("#tbody").append("<tr id=\"line1\"><td class=\"user-name\">"+check.userName+"</td><td class=\"user-phone\">已签到</td><td class=\"user-mobile\">"+check.checkInTime+"</td></tr>");
+                }
+                for(var i = 0;i<notChecked.length;i++){
+                    var name = notChecked[i];
+                    $("#tbody").append("<tr style='color: red' id=\"line1\"><td class=\"user-name\">"+name+"</td><td class=\"user-phone\">未签到</td><td class=\"user-mobile\">"+checked[0].checkInTime+"</td></tr>");
+                }
+            }else if (date.status == 1){
+                xtip.msg(data.msg,{icon:'e',type:'w'});
+            }
+        }).fail(function(){
+            xtip.msg("请求失败",{icon:'e',type:'w'});
+        })
+    }
+</script>

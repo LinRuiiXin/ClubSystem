@@ -19,4 +19,7 @@
     <select id="queryAdminCount" resultType="java.lang.Integer">
         select count(*) from user where status = 1
     </select>
+    <select id="userNotCheckIn" resultType="java.lang.String">
+        select userName from user where status = 0 and id not in(select userId from work_time where checkInTime = #{checkInTime})
+    </select>
 </mapper>

@@ -27,8 +27,8 @@ nav{
 /*** Shamso ***/
 
 .nav--shamso .nav__item {
-	width: 2.25em;
-	height: 2.25em;
+	width: 2.0em;
+	height: 2.0em;
 }
 
 .nav--shamso .nav__item::before,

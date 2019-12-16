@@ -6,7 +6,6 @@ import com.lx.mapper.UserMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 
